@@ -11,6 +11,9 @@
     cartCount = Math.max(0, count);
     if (cartEl) cartEl.textContent = String(cartCount);
     if (cartDrawerCountEl) cartDrawerCountEl.textContent = String(cartCount);
+    document.querySelectorAll(".mobile-bottom-cart-count").forEach(function (el) {
+      el.textContent = String(cartCount);
+    });
     var cartLinks = document.querySelectorAll(".cart-trigger");
     cartLinks.forEach(function (link) {
       link.setAttribute("aria-label", "Cart, " + cartCount + (cartCount === 1 ? " item" : " items"));
@@ -21,6 +24,9 @@
   function setWishlist(count) {
     wishCount = Math.max(0, count);
     if (wishEl) wishEl.textContent = String(wishCount);
+    document.querySelectorAll(".mobile-bottom-wishlist-count").forEach(function (el) {
+      el.textContent = String(wishCount);
+    });
   }
 
   // Toast notification
@@ -200,13 +206,57 @@
       closeCartDrawer();
       closeSearchModal();
       closeFilterDrawer();
+      closeMobileMenu();
     }
   });
 
-  // Mobile navigation
+  // Modern Mobile Menu Drawer Controls
+  var mobileMenuDrawer = document.getElementById("mobile-menu-drawer");
+  function openMobileMenu() {
+    if (mobileMenuDrawer) {
+      mobileMenuDrawer.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+  }
+  function closeMobileMenu() {
+    if (mobileMenuDrawer) {
+      mobileMenuDrawer.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+  }
+  document.querySelectorAll("[data-mobile-menu-open]").forEach(function (btn) {
+    btn.addEventListener("click", openMobileMenu);
+  });
+  document.querySelectorAll("[data-mobile-menu-close]").forEach(function (btn) {
+    btn.addEventListener("click", closeMobileMenu);
+  });
+  if (mobileMenuDrawer) {
+    mobileMenuDrawer.addEventListener("click", function (e) {
+      if (e.target === mobileMenuDrawer) closeMobileMenu();
+    });
+    mobileMenuDrawer.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closeMobileMenu);
+    });
+  }
+
+  // Mobile search toggle (opens modern search modal or toggles mobile search row)
+  document.querySelectorAll("[data-mobile-search-toggle]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var mobileSearch = document.getElementById("mobile-search-bar");
+      if (mobileSearch) {
+        var isHidden = mobileSearch.classList.toggle("hidden");
+        var input = mobileSearch.querySelector("input");
+        if (input && !isHidden) input.focus();
+      } else {
+        openSearchModal();
+      }
+    });
+  });
+
+  // Mobile navigation (legacy fallback if present)
   var menuBtn = document.getElementById("menu-btn");
   var mobileNav = document.getElementById("mobile-nav");
-  if (menuBtn && mobileNav) {
+  if (menuBtn && mobileNav && !mobileMenuDrawer) {
     menuBtn.addEventListener("click", function () {
       var open = mobileNav.classList.toggle("hidden") === false;
       menuBtn.setAttribute("aria-expanded", open ? "true" : "false");

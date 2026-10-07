@@ -50,20 +50,20 @@ export const head = (title, description) => `<!DOCTYPE html>
 
 export const announcementBar = `
   <div class="bg-brand-bar text-white">
-    <div class="pad site-max flex h-10 w-full items-center justify-between text-xs font-semibold">
-      <div class="flex items-center gap-2">
-        <span class="text-white/80">${icon("truck", "h-3.5 w-3.5")}</span>
-        <span class="tracking-tight">Free Express Delivery on orders above ₹499 across India</span>
-      </div>
-      <div class="hidden items-center gap-6 sm:flex">
-        <a href="tracking.html" class="flex items-center gap-1.5 text-white/90 hover:text-white transition">
-          ${icon("clock", "h-3.5 w-3.5 text-white/70")}
-          <span>Track Order</span>
-        </a>
-        <a href="faq.html" class="text-white/90 hover:text-white transition">Help &amp; FAQs</a>
-        <span class="text-white/40">|</span>
-        <span class="text-amber-300 font-bold">Use code KARTZO10 for 10% OFF</span>
-      </div>
+    <div class="pad flex h-10 w-full items-center justify-between gap-4 text-[12.5px] font-semibold sm:h-11 sm:text-[13px]">
+      <p class="flex min-w-0 items-center gap-2">
+        <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg>
+        <span class="truncate">Free Shipping on orders ₹499+</span>
+      </p>
+      <ul class="hidden items-center gap-8 md:flex">
+        <li class="flex items-center gap-2"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 4v4h4"/></svg>7 Days Easy Returns</li>
+        <li class="flex items-center gap-2"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg>100% Secure Payment</li>
+      </ul>
+      <a href="index.html#app" class="inline-flex shrink-0 items-center gap-2 hover:underline">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+        <span class="sm:hidden">Get 10% OFF</span>
+        <span class="hidden sm:inline">Download App &amp; Get 10% OFF</span>
+      </a>
     </div>
   </div>
 `;
@@ -74,89 +74,305 @@ export function nav(active) {
     ["products.html", "Shop", "shop"],
     ["categories.html", "Categories", "categories"],
     ["deals.html", "Deals", "deals"],
-    ["blog.html", "Blog", "blog"],
-    ["about.html", "About", "about"],
-    ["contact.html", "Contact", "contact"]
+    ["orders.html", "Orders", "orders"],
+    ["about.html", "About", "about"]
   ];
-  const link = (href, label, key, mobile = false) => {
-    const on = active === key;
-    if (mobile) {
-      return `<a href="${href}" class="rounded-xl px-4 py-3 text-sm font-semibold transition ${on ? "bg-brand-soft text-brand font-bold" : "text-slate-700 hover:bg-slate-50"}">${label}</a>`;
-    }
-    return `
-      <a href="${href}" class="relative inline-flex h-full items-center px-3.5 text-sm font-semibold transition ${on ? "text-brand font-bold" : "text-slate-700 hover:text-brand"}">
-        ${label}
-        ${on ? '<span class="absolute bottom-0 inset-x-3.5 h-0.5 bg-brand rounded-full"></span>' : ""}
-      </a>`;
-  };
   return `
-  <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-md">
-    <div class="pad site-max flex h-16 w-full items-center justify-between lg:h-20">
+  <header class="sticky top-0 z-50 border-b border-[#e8eef8] bg-white/95 backdrop-blur">
+    <div class="pad flex h-[62px] sm:h-[68px] lg:h-[76px] w-full items-center justify-between">
       
-      <!-- Logo & Primary Nav -->
-      <div class="flex items-center gap-8 xl:gap-12">
-        <a href="index.html" class="shrink-0 flex items-center" aria-label="Kartzo Home">
-          <img src="assets/logo.webp" alt="Kartzo" width="541" height="168" class="h-8 w-auto lg:h-9">
-        </a>
-        <nav class="hidden h-16 items-center gap-1 lg:flex" aria-label="Primary Navigation">
-          ${items.map(([h, l, k]) => link(h, l, k)).join("\n        ")}
-        </nav>
-      </div>
+      <!-- Brand Logo -->
+      <a href="index.html" class="shrink-0 flex items-center" aria-label="Kartzo home">
+        <img src="assets/logo.webp" alt="Kartzo" width="541" height="168" class="h-7 w-auto sm:h-9">
+      </a>
+
+      <!-- Desktop Primary Nav -->
+      <nav class="ml-6 hidden h-full items-center gap-1 lg:ml-10 lg:flex" aria-label="Primary Navigation">
+        ${items.map(([h, l, k]) => `
+        <a href="${h}" class="inline-flex h-full items-center border-b-2 ${active === k ? "border-brand font-bold text-brand" : "border-transparent font-semibold text-[#3c4a66] hover:text-brand"} px-3.5 text-sm transition">${l}</a>`).join("")}
+      </nav>
+
+      <!-- Desktop Search Bar -->
+      <form class="search-form ml-auto hidden w-full max-w-[440px] items-center pl-6 lg:flex" action="products.html" method="get" role="search">
+        <label for="search" class="sr-only">Search for products, brands and more</label>
+        <div class="flex w-full items-center rounded-full border border-[#d9e4f7] bg-[#f3f7ff] py-1 pl-4 pr-1 focus-within:border-brand focus-within:bg-white transition duration-150">
+          <input id="search" name="q" class="search-input w-full bg-transparent text-sm text-brand-ink outline-none placeholder:text-[#93a0b8]" type="search" placeholder="Search products, brands..." autocomplete="off">
+          <button type="submit" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-white hover:bg-brand-dark transition" aria-label="Search">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          </button>
+        </div>
+      </form>
 
       <!-- Actions Group -->
-      <div class="flex items-center gap-1 sm:gap-2">
-        <!-- Search Trigger Button -->
-        <button type="button" data-search-modal-open class="flex h-10 items-center gap-2.5 rounded-full border border-slate-200 bg-slate-50/80 px-3.5 text-xs font-semibold text-slate-500 hover:border-slate-300 hover:bg-white transition duration-150" aria-label="Search products">
-          ${icon("search", "h-4 w-4 text-slate-400")}
-          <span class="hidden md:inline">Search products...</span>
-          <kbd class="hidden lg:inline-flex rounded border border-slate-200 bg-white px-1.5 py-0.5 text-[10px] text-slate-400">Ctrl K</kbd>
+      <div class="ml-auto flex items-center gap-1 sm:gap-2 lg:gap-3 lg:ml-4">
+        <!-- Mobile/Tablet Search Button (opens search modal) -->
+        <button type="button" data-search-modal-open class="flex h-10 w-10 items-center justify-center rounded-xl text-brand-ink hover:bg-brand-soft lg:hidden transition" aria-label="Search products">
+          ${icon("search", "h-5 w-5")}
         </button>
 
-        <!-- Wishlist -->
-        <a href="wishlist.html" class="relative flex h-10 w-10 items-center justify-center rounded-full text-slate-700 hover:bg-slate-100 hover:text-brand transition" aria-label="Wishlist, 4 saved items">
-          ${icon("heart", "h-5 w-5")}
-          <span id="wishlist-count" class="absolute top-1 right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-rose-500 px-1 text-[10px] font-black text-white">4</span>
+        <!-- Desktop-Only Wishlist (on mobile, cleanly accessed via bottom bar) -->
+        <a href="wishlist.html" class="hidden lg:flex min-h-11 min-w-11 flex-col items-center justify-center rounded-xl px-2 text-[#3c4a66] transition-colors duration-200 hover:bg-brand-soft" aria-label="Wishlist">
+          <span class="relative inline-flex items-center justify-center">
+            ${icon("heart", "h-5 w-5")}
+            <span id="wishlist-count" class="absolute -top-1 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-rose-500 px-1 text-[9px] font-black text-white leading-none">4</span>
+          </span>
+          <span class="text-[10px] font-bold mt-0.5">Wishlist</span>
         </a>
 
-        <!-- Cart Drawer Trigger -->
-        <button type="button" data-cart-drawer-open class="cart-trigger relative flex h-10 w-10 items-center justify-center rounded-full text-slate-700 hover:bg-slate-100 hover:text-brand transition" aria-label="Shopping Cart, 2 items">
-          ${icon("cart", "h-5 w-5")}
-          <span id="cart-count" class="absolute top-1 right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand px-1 text-[10px] font-black text-white">2</span>
+        <!-- Desktop-Only Cart (on mobile, cleanly accessed via bottom bar) -->
+        <button type="button" data-cart-drawer-open class="cart-trigger hidden lg:flex min-h-11 min-w-11 flex-col items-center justify-center rounded-xl px-2 text-[#3c4a66] transition-colors duration-200 hover:bg-brand-soft" aria-label="Cart, 2 items">
+          <span class="relative inline-flex items-center justify-center">
+            ${icon("cart", "h-5 w-5")}
+            <span id="cart-count" class="absolute -top-1 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand px-1 text-[9px] font-black text-white leading-none">2</span>
+          </span>
+          <span class="text-[10px] font-bold mt-0.5">Cart</span>
         </button>
 
-        <!-- Account -->
-        <a href="account.html" class="flex h-10 w-10 items-center justify-center rounded-full text-slate-700 hover:bg-slate-100 hover:text-brand transition" aria-label="Customer Account">
+        <!-- Account (Visible on all screens) -->
+        <a href="account.html" class="flex h-10 w-10 sm:min-h-11 sm:min-w-11 flex-col items-center justify-center rounded-xl text-[#3c4a66] transition-colors duration-200 hover:bg-brand-soft" aria-label="Customer Account">
           ${icon("user", "h-5 w-5")}
+          <span class="hidden text-[10px] font-bold lg:block mt-0.5">Account</span>
         </a>
 
-        <!-- Mobile Menu Hamburger -->
-        <button id="menu-btn" type="button" class="flex h-10 w-10 items-center justify-center rounded-full text-slate-800 hover:bg-slate-100 lg:hidden" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation menu">
+        <!-- Mobile Menu Trigger (Drawer) -->
+        <button type="button" data-mobile-menu-open class="flex h-10 w-10 items-center justify-center rounded-xl text-brand-ink hover:bg-brand-soft lg:hidden transition" aria-label="Open menu">
           ${icon("menu", "h-5 w-5")}
         </button>
       </div>
     </div>
 
-    <!-- Mobile Drawer Navigation -->
-    <div id="mobile-nav" class="hidden border-t border-slate-200 bg-white lg:hidden">
-      <nav class="pad flex flex-col gap-1 py-4" aria-label="Mobile Navigation Menu">
-        ${items.map(([h, l, k]) => link(h, l, k, true)).join("\n        ")}
+    <!-- Mobile Horizontal Category Navigation Strip (Sub-Navbar) -->
+    <div class="border-t border-[#e8eef8]/80 bg-white lg:hidden">
+      <nav class="pad no-scrollbar flex items-center gap-1.5 overflow-x-auto py-2 text-xs font-semibold" aria-label="Quick Category Navigation">
+        <a href="index.html" class="shrink-0 flex items-center gap-1 rounded-full ${active === "home" ? "bg-brand text-white shadow-xs" : "border border-slate-200/80 bg-[#f8faff] text-slate-700 hover:border-brand hover:text-brand"} px-3 py-1 transition font-bold">Home</a>
+        <a href="products.html" class="shrink-0 flex items-center gap-1 rounded-full ${active === "shop" ? "bg-brand text-white shadow-xs" : "border border-slate-200/80 bg-[#f8faff] text-slate-700 hover:border-brand hover:text-brand"} px-3 py-1 transition font-bold">Shop</a>
+        <a href="categories.html" class="shrink-0 flex items-center gap-1 rounded-full ${active === "categories" ? "bg-brand text-white shadow-xs" : "border border-slate-200/80 bg-[#f8faff] text-slate-700 hover:border-brand hover:text-brand"} px-3 py-1 transition font-bold">Categories</a>
+        <a href="deals.html" class="shrink-0 flex items-center gap-1.5 rounded-full border border-rose-200 bg-rose-50/70 px-3 py-1 font-bold text-rose-600 hover:bg-rose-100 transition ${active === "deals" ? "ring-2 ring-rose-500" : ""}"><span class="h-1.5 w-1.5 rounded-full bg-rose-500 animate-pulse"></span>Deals 🔥</a>
+        <a href="products.html?category=electronics" class="shrink-0 flex items-center gap-1 rounded-full border border-slate-200/80 bg-[#f8faff] px-3 py-1 text-slate-700 hover:border-brand hover:text-brand transition">🎧 Electronics</a>
+        <a href="products.html?category=fashion" class="shrink-0 flex items-center gap-1 rounded-full border border-slate-200/80 bg-[#f8faff] px-3 py-1 text-slate-700 hover:border-brand hover:text-brand transition">👟 Fashion</a>
+        <a href="products.html?category=home" class="shrink-0 flex items-center gap-1 rounded-full border border-slate-200/80 bg-[#f8faff] px-3 py-1 text-slate-700 hover:border-brand hover:text-brand transition">🏠 Home</a>
+        <a href="orders.html" class="shrink-0 flex items-center gap-1 rounded-full ${active === "orders" ? "bg-brand text-white shadow-xs" : "border border-slate-200/80 bg-[#f8faff] text-slate-700 hover:border-brand hover:text-brand"} px-3 py-1 transition font-bold">Orders</a>
       </nav>
-      <div class="pad border-t border-slate-100 py-3.5 space-y-2 text-xs font-semibold text-slate-600">
-        <a href="tracking.html" class="flex items-center gap-2 py-1.5 hover:text-brand transition">
-          ${icon("truck", "h-4 w-4 text-slate-400")}
-          Track Order
-        </a>
-        <a href="orders.html" class="flex items-center gap-2 py-1.5 hover:text-brand transition">
-          ${icon("clock", "h-4 w-4 text-slate-400")}
-          My Past Orders
-        </a>
-        <a href="login.html" class="flex items-center gap-2 py-1.5 hover:text-brand transition">
-          ${icon("user", "h-4 w-4 text-slate-400")}
-          Sign In / Create Account
-        </a>
-      </div>
     </div>
   </header>
+`;
+}
+
+export function mobileMenuDrawer(active) {
+  return `
+  <!-- Modern Mobile Slide-Over Sheet Drawer (Departments & Customer Hub) -->
+  <div id="mobile-menu-drawer" class="drawer-backdrop fixed inset-0 z-[80] bg-brand-ink/60 backdrop-blur-sm lg:hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navigation Menu">
+    <div class="drawer-panel-left flex h-full w-[86%] max-w-sm flex-col bg-white shadow-2xl">
+      <!-- Drawer Top Bar -->
+      <div class="flex items-center justify-between border-b border-[#e8eef8] px-5 py-4">
+        <a href="index.html" class="flex items-center" aria-label="Kartzo home">
+          <img src="assets/logo.webp" alt="Kartzo" width="541" height="168" class="h-7 w-auto">
+        </a>
+        <button type="button" data-mobile-menu-close class="flex h-9 w-9 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 hover:text-brand-ink transition" aria-label="Close menu">
+          ${icon("close", "h-5 w-5")}
+        </button>
+      </div>
+
+      <!-- User Welcome & Sign In Strip -->
+      <div class="bg-brand-soft px-5 py-3.5 flex items-center justify-between border-b border-[#d7e3f8]/70">
+        <div class="flex items-center gap-2.5">
+          <div class="flex h-9 w-9 items-center justify-center rounded-full bg-brand text-white font-bold text-xs shadow-sm">
+            ${icon("user", "h-4 w-4")}
+          </div>
+          <div>
+            <p class="text-xs font-bold text-brand-ink">Welcome to Kartzo</p>
+            <p class="text-[11px] text-slate-500">Sign in for express checkout</p>
+          </div>
+        </div>
+        <a href="login.html" class="rounded-lg bg-brand px-3 py-1.5 text-xs font-bold text-white hover:bg-brand-dark transition shadow-sm">
+          Sign In
+        </a>
+      </div>
+
+      <!-- Scrollable Menu Content -->
+      <div class="flex-1 overflow-y-auto px-5 py-4 space-y-6">
+        <!-- Shop by Department (Categorized List with item counts) -->
+        <div>
+          <div class="flex items-center justify-between">
+            <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Shop by Department</p>
+            <a href="categories.html" class="text-[11px] font-bold text-brand hover:underline">View All</a>
+          </div>
+          <div class="mt-2.5 space-y-1">
+            <a href="products.html?category=electronics" class="flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-bold text-brand-ink hover:bg-slate-50 transition">
+              <span class="flex items-center gap-3">
+                <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-[#eaf1ff] text-brand">🎧</span>
+                <span>Audio &amp; Electronics</span>
+              </span>
+              <span class="text-[11px] font-normal text-slate-400">24 items</span>
+            </a>
+            <a href="products.html?category=fashion" class="flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-bold text-brand-ink hover:bg-slate-50 transition">
+              <span class="flex items-center gap-3">
+                <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-[#eaf1ff] text-brand">👟</span>
+                <span>Footwear &amp; Fashion</span>
+              </span>
+              <span class="text-[11px] font-normal text-slate-400">36 items</span>
+            </a>
+            <a href="products.html?category=home" class="flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-bold text-brand-ink hover:bg-slate-50 transition">
+              <span class="flex items-center gap-3">
+                <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-[#eaf1ff] text-brand">🏠</span>
+                <span>Home &amp; Living</span>
+              </span>
+              <span class="text-[11px] font-normal text-slate-400">18 items</span>
+            </a>
+            <a href="products.html?category=beauty" class="flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-bold text-brand-ink hover:bg-slate-50 transition">
+              <span class="flex items-center gap-3">
+                <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-[#eaf1ff] text-brand">💄</span>
+                <span>Beauty &amp; Fragrances</span>
+              </span>
+              <span class="text-[11px] font-normal text-slate-400">15 items</span>
+            </a>
+            <a href="products.html?category=kitchen" class="flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-bold text-brand-ink hover:bg-slate-50 transition">
+              <span class="flex items-center gap-3">
+                <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-[#eaf1ff] text-brand">🍳</span>
+                <span>Kitchen Appliances</span>
+              </span>
+              <span class="text-[11px] font-normal text-slate-400">12 items</span>
+            </a>
+            <a href="products.html?category=bags" class="flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-bold text-brand-ink hover:bg-slate-50 transition">
+              <span class="flex items-center gap-3">
+                <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-[#eaf1ff] text-brand">🎒</span>
+                <span>Bags &amp; Travel Gear</span>
+              </span>
+              <span class="text-[11px] font-normal text-slate-400">16 items</span>
+            </a>
+            <a href="products.html" class="flex items-center justify-between rounded-xl border border-dashed border-slate-200 px-3 py-2 text-xs font-bold text-brand hover:bg-brand-soft transition mt-2">
+              <span>Browse Complete Catalog</span>
+              ${icon("arrow-right", "h-3.5 w-3.5")}
+            </a>
+          </div>
+        </div>
+
+        <!-- Orders & Account Management -->
+        <div>
+          <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">My Orders &amp; Account</p>
+          <nav class="mt-2 space-y-1">
+            <a href="tracking.html" class="flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition">
+              <span class="flex items-center gap-3">
+                ${icon("truck", "h-4 w-4 text-brand")}
+                Track Active Shipment
+              </span>
+              <span class="rounded bg-emerald-50 px-1.5 py-0.5 text-[10px] font-bold text-emerald-700">Live AWB</span>
+            </a>
+            <a href="orders.html" class="flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition">
+              <span class="flex items-center gap-3">
+                ${icon("package", "h-4 w-4 text-slate-500")}
+                My Past Orders
+              </span>
+              ${icon("chevron-right", "h-4 w-4 text-slate-400")}
+            </a>
+            <a href="account.html" class="flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition">
+              <span class="flex items-center gap-3">
+                ${icon("user", "h-4 w-4 text-slate-500")}
+                Profile &amp; Saved Addresses
+              </span>
+              ${icon("chevron-right", "h-4 w-4 text-slate-400")}
+            </a>
+          </nav>
+        </div>
+
+        <!-- Customer Care & Assistance -->
+        <div>
+          <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Customer Support</p>
+          <nav class="mt-2 space-y-1">
+            <a href="contact.html" class="flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition">
+              <span class="flex items-center gap-3">
+                ${icon("phone", "h-4 w-4 text-slate-500")}
+                24/7 Support: +91 98765 43210
+              </span>
+              ${icon("chevron-right", "h-4 w-4 text-slate-400")}
+            </a>
+            <a href="returns-policy.html" class="flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition">
+              <span class="flex items-center gap-3">
+                ${icon("refresh", "h-4 w-4 text-slate-500")}
+                7-Day Doorstep Replacement
+              </span>
+              ${icon("chevron-right", "h-4 w-4 text-slate-400")}
+            </a>
+            <a href="size-guide.html" class="flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition">
+              <span class="flex items-center gap-3">
+                ${icon("help", "h-4 w-4 text-slate-500")}
+                Size &amp; Fit Guide
+              </span>
+              ${icon("chevron-right", "h-4 w-4 text-slate-400")}
+            </a>
+            <a href="about.html" class="flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition">
+              <span class="flex items-center gap-3">
+                ${icon("shield-check", "h-4 w-4 text-slate-500")}
+                About Kartzo &amp; Quality Promise
+              </span>
+              ${icon("chevron-right", "h-4 w-4 text-slate-400")}
+            </a>
+          </nav>
+        </div>
+
+        <!-- Service Assurance Strip -->
+        <div class="rounded-2xl border border-slate-200/80 bg-slate-50 p-3.5 space-y-1.5 text-xs">
+          <div class="flex items-center gap-2 text-brand font-bold">
+            ${icon("truck", "h-4 w-4")}
+            <span>Free Express Delivery</span>
+          </div>
+          <p class="text-[11px] text-slate-500 leading-relaxed">Orders ₹499+ qualify for free express delivery across all pin codes in India.</p>
+        </div>
+      </div>
+
+      <!-- Drawer Bottom Quick Policy Links -->
+      <div class="border-t border-[#e8eef8] p-3.5 bg-white">
+        <div class="flex items-center justify-around text-[11px] text-slate-400 font-semibold">
+          <a href="faq.html" class="hover:text-brand transition">FAQs</a>
+          <span>•</span>
+          <a href="shipping-policy.html" class="hover:text-brand transition">Shipping</a>
+          <span>•</span>
+          <a href="privacy-policy.html" class="hover:text-brand transition">Privacy</a>
+          <span>•</span>
+          <a href="terms-conditions.html" class="hover:text-brand transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </div>
+`;
+}
+
+export function mobileBottomBar(active) {
+  return `
+  <!-- Modern App-Style Floating Sticky Bottom Nav Bar (Mobile Only) -->
+  <nav class="fixed bottom-0 inset-x-0 z-40 flex h-16 items-center justify-around border-t border-[#e8eef8] bg-white/95 backdrop-blur-md px-1 shadow-[0_-4px_20px_rgba(16,42,110,0.06)] lg:hidden pb-[env(safe-area-inset-bottom,0px)]" aria-label="Mobile Bottom Navigation">
+    <a href="index.html" class="bottom-nav-tab flex flex-1 flex-col items-center justify-center py-1 transition ${active === 'home' ? 'active' : 'text-[#4E5D78] hover:text-brand'}">
+      ${icon("home", "h-5 w-5")}
+      <span class="mt-0.5 text-[10px] font-bold">Home</span>
+    </a>
+    <a href="categories.html" class="bottom-nav-tab flex flex-1 flex-col items-center justify-center py-1 transition ${active === 'categories' ? 'active' : 'text-[#4E5D78] hover:text-brand'}">
+      ${icon("grid", "h-5 w-5")}
+      <span class="mt-0.5 text-[10px] font-bold">Categories</span>
+    </a>
+    <a href="deals.html" class="bottom-nav-tab relative flex flex-1 flex-col items-center justify-center py-1 transition ${active === 'deals' ? 'active' : 'text-[#4E5D78] hover:text-brand'}">
+      <span class="absolute top-1 right-3 flex h-2 w-2 rounded-full bg-rose-500 animate-pulse"></span>
+      ${icon("flame", "h-5 w-5 text-amber-500")}
+      <span class="mt-0.5 text-[10px] font-bold">Deals</span>
+    </a>
+    <a href="wishlist.html" class="bottom-nav-tab relative flex flex-1 flex-col items-center justify-center py-1 transition ${active === 'wishlist' ? 'active' : 'text-[#4E5D78] hover:text-brand'}">
+      <span class="relative inline-flex items-center justify-center">
+        ${icon("heart", "h-5 w-5")}
+        <span class="mobile-bottom-wishlist-count absolute -top-1 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-rose-500 px-1 text-[9px] font-black text-white leading-none">4</span>
+      </span>
+      <span class="mt-0.5 text-[10px] font-bold">Wishlist</span>
+    </a>
+    <button type="button" data-cart-drawer-open class="cart-trigger bottom-nav-tab relative flex flex-1 flex-col items-center justify-center py-1 transition text-[#4E5D78] hover:text-brand">
+      <span class="relative inline-flex items-center justify-center">
+        ${icon("cart", "h-5 w-5")}
+        <span class="mobile-bottom-cart-count absolute -top-1 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand px-1 text-[9px] font-black text-white leading-none">2</span>
+      </span>
+      <span class="mt-0.5 text-[10px] font-bold">Bag</span>
+    </button>
+    <button type="button" data-mobile-menu-open class="bottom-nav-tab flex flex-1 flex-col items-center justify-center py-1 transition text-[#4E5D78] hover:text-brand" aria-label="Open navigation menu">
+      ${icon("menu", "h-5 w-5")}
+      <span class="mt-0.5 text-[10px] font-bold">Menu</span>
+    </button>
+  </nav>
 `;
 }
 
@@ -511,9 +727,12 @@ ${nav(active)}
   <main id="main">
 ${body}
   </main>
+${mobileMenuDrawer(active)}
+${mobileBottomBar(active)}
 ${cartDrawer}
 ${searchModal}
 ${footer}
+  <script src="assets/kartzo.js"></script>
 ${extraScript}
 </body>
 </html>

@@ -15,17 +15,26 @@ export function icon(name, className = "h-4 w-4", ariaHidden = true) {
     case "clock":
       return `<svg ${base}><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`;
 
+    case "home":
+      return `<svg ${base}><path d="m3 9.5 9-7 9 7v10a1.5 1.5 0 0 1-1.5 1.5H15v-6a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v6H4.5A1.5 1.5 0 0 1 3 19.5z"/></svg>`;
+
+    case "grid":
+      return `<svg ${base}><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>`;
+
+    case "flame":
+      return `<svg ${base}><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>`;
+
     case "search":
       return `<svg ${base}><circle cx="11" cy="11" r="7.5"/><path d="m20 20-3.8-3.8"/></svg>`;
 
     case "cart":
-      return `<svg ${base}><path d="M4 4h2l2.2 11.2a1 1 0 0 0 1 .8h10.6a1 1 0 0 0 1-.8L22 7H7"/><circle cx="10" cy="20" r="1.2"/><circle cx="19" cy="20" r="1.2"/></svg>`;
+      return `<svg ${base}><path d="M3 4h2l2.2 11h11.3l1.8-7H7"/><circle cx="9" cy="20" r="1.2"/><circle cx="18" cy="20" r="1.2"/></svg>`;
 
     case "heart":
-      return `<svg ${base}><path d="M12 20.2 4.6 13a5.2 5.2 0 0 1 0-7.4 5.2 5.2 0 0 1 7.4 0L12 6.6l.4-.4a5.2 5.2 0 0 1 7.4 0 5.2 5.2 0 0 1 0 7.4L12 20.2z"/></svg>`;
+      return `<svg ${base}><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg>`;
 
     case "user":
-      return `<svg ${base}><circle cx="12" cy="7.5" r="4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>`;
+      return `<svg ${base}><circle cx="12" cy="8" r="3.2"/><path d="M5 19c1.4-3 3.8-4.5 7-4.5S17.6 16 19 19"/></svg>`;
 
     case "menu":
       return `<svg ${base}><path d="M4 6.5h16M4 12h16M4 17.5h16"/></svg>`;
