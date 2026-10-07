@@ -1,10 +1,19 @@
-<!DOCTYPE html>
+import { writeFileSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+import { icon, stars } from "./icons.mjs";
+
+export { icon, stars };
+
+export const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+
+export const head = (title, description) => `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Account — Kartzo</title>
-  <meta name="description" content="Manage your Kartzo customer profile, saved delivery addresses, orders, and security settings.">
+  <title>${title}</title>
+  <meta name="description" content="${description}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
@@ -37,17 +46,18 @@
 </head>
 <body id="top" class="overflow-x-hidden bg-white font-sans text-brand-ink antialiased">
   <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[90] focus:rounded-xl focus:bg-white focus:px-4 focus:py-2.5 focus:text-xs focus:font-bold focus:text-brand focus:ring-2 focus:ring-brand">Skip to content</a>
+`;
 
-
+export const announcementBar = `
   <div class="bg-brand-bar text-white">
     <div class="pad site-max flex h-10 w-full items-center justify-between text-xs font-semibold">
       <div class="flex items-center gap-2">
-        <span class="text-white/80"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5h13v10H2zM15 9h4l3 3v3h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></span>
+        <span class="text-white/80">${icon("truck", "h-3.5 w-3.5")}</span>
         <span class="tracking-tight">Free Express Delivery on orders above ₹499 across India</span>
       </div>
       <div class="hidden items-center gap-6 sm:flex">
         <a href="tracking.html" class="flex items-center gap-1.5 text-white/90 hover:text-white transition">
-          <svg class="h-3.5 w-3.5 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          ${icon("clock", "h-3.5 w-3.5 text-white/70")}
           <span>Track Order</span>
         </a>
         <a href="faq.html" class="text-white/90 hover:text-white transition">Help &amp; FAQs</a>
@@ -56,8 +66,30 @@
       </div>
     </div>
   </div>
+`;
 
-
+export function nav(active) {
+  const items = [
+    ["index.html", "Home", "home"],
+    ["products.html", "Shop", "shop"],
+    ["categories.html", "Categories", "categories"],
+    ["deals.html", "Deals", "deals"],
+    ["blog.html", "Blog", "blog"],
+    ["about.html", "About", "about"],
+    ["contact.html", "Contact", "contact"]
+  ];
+  const link = (href, label, key, mobile = false) => {
+    const on = active === key;
+    if (mobile) {
+      return `<a href="${href}" class="rounded-xl px-4 py-3 text-sm font-semibold transition ${on ? "bg-brand-soft text-brand font-bold" : "text-slate-700 hover:bg-slate-50"}">${label}</a>`;
+    }
+    return `
+      <a href="${href}" class="relative inline-flex h-full items-center px-3.5 text-sm font-semibold transition ${on ? "text-brand font-bold" : "text-slate-700 hover:text-brand"}">
+        ${label}
+        ${on ? '<span class="absolute bottom-0 inset-x-3.5 h-0.5 bg-brand rounded-full"></span>' : ""}
+      </a>`;
+  };
+  return `
   <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-md">
     <div class="pad site-max flex h-16 w-full items-center justify-between lg:h-20">
       
@@ -67,41 +99,7 @@
           <img src="assets/logo.webp" alt="Kartzo" width="541" height="168" class="h-8 w-auto lg:h-9">
         </a>
         <nav class="hidden h-16 items-center gap-1 lg:flex" aria-label="Primary Navigation">
-          
-      <a href="index.html" class="relative inline-flex h-full items-center px-3.5 text-sm font-semibold transition text-slate-700 hover:text-brand">
-        Home
-        
-      </a>
-        
-      <a href="products.html" class="relative inline-flex h-full items-center px-3.5 text-sm font-semibold transition text-slate-700 hover:text-brand">
-        Shop
-        
-      </a>
-        
-      <a href="categories.html" class="relative inline-flex h-full items-center px-3.5 text-sm font-semibold transition text-slate-700 hover:text-brand">
-        Categories
-        
-      </a>
-        
-      <a href="deals.html" class="relative inline-flex h-full items-center px-3.5 text-sm font-semibold transition text-slate-700 hover:text-brand">
-        Deals
-        
-      </a>
-        
-      <a href="blog.html" class="relative inline-flex h-full items-center px-3.5 text-sm font-semibold transition text-slate-700 hover:text-brand">
-        Blog
-        
-      </a>
-        
-      <a href="about.html" class="relative inline-flex h-full items-center px-3.5 text-sm font-semibold transition text-slate-700 hover:text-brand">
-        About
-        
-      </a>
-        
-      <a href="contact.html" class="relative inline-flex h-full items-center px-3.5 text-sm font-semibold transition text-slate-700 hover:text-brand">
-        Contact
-        
-      </a>
+          ${items.map(([h, l, k]) => link(h, l, k)).join("\n        ")}
         </nav>
       </div>
 
@@ -109,31 +107,31 @@
       <div class="flex items-center gap-1 sm:gap-2">
         <!-- Search Trigger Button -->
         <button type="button" data-search-modal-open class="flex h-10 items-center gap-2.5 rounded-full border border-slate-200 bg-slate-50/80 px-3.5 text-xs font-semibold text-slate-500 hover:border-slate-300 hover:bg-white transition duration-150" aria-label="Search products">
-          <svg class="h-4 w-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7.5"/><path d="m20 20-3.8-3.8"/></svg>
+          ${icon("search", "h-4 w-4 text-slate-400")}
           <span class="hidden md:inline">Search products...</span>
           <kbd class="hidden lg:inline-flex rounded border border-slate-200 bg-white px-1.5 py-0.5 text-[10px] text-slate-400">Ctrl K</kbd>
         </button>
 
         <!-- Wishlist -->
         <a href="wishlist.html" class="relative flex h-10 w-10 items-center justify-center rounded-full text-slate-700 hover:bg-slate-100 hover:text-brand transition" aria-label="Wishlist, 4 saved items">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.2 4.6 13a5.2 5.2 0 0 1 0-7.4 5.2 5.2 0 0 1 7.4 0L12 6.6l.4-.4a5.2 5.2 0 0 1 7.4 0 5.2 5.2 0 0 1 0 7.4L12 20.2z"/></svg>
+          ${icon("heart", "h-5 w-5")}
           <span id="wishlist-count" class="absolute top-1 right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-rose-500 px-1 text-[10px] font-black text-white">4</span>
         </a>
 
         <!-- Cart Drawer Trigger -->
         <button type="button" data-cart-drawer-open class="cart-trigger relative flex h-10 w-10 items-center justify-center rounded-full text-slate-700 hover:bg-slate-100 hover:text-brand transition" aria-label="Shopping Cart, 2 items">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h2l2.2 11.2a1 1 0 0 0 1 .8h10.6a1 1 0 0 0 1-.8L22 7H7"/><circle cx="10" cy="20" r="1.2"/><circle cx="19" cy="20" r="1.2"/></svg>
+          ${icon("cart", "h-5 w-5")}
           <span id="cart-count" class="absolute top-1 right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand px-1 text-[10px] font-black text-white">2</span>
         </button>
 
         <!-- Account -->
         <a href="account.html" class="flex h-10 w-10 items-center justify-center rounded-full text-slate-700 hover:bg-slate-100 hover:text-brand transition" aria-label="Customer Account">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7.5" r="4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>
+          ${icon("user", "h-5 w-5")}
         </a>
 
         <!-- Mobile Menu Hamburger -->
         <button id="menu-btn" type="button" class="flex h-10 w-10 items-center justify-center rounded-full text-slate-800 hover:bg-slate-100 lg:hidden" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation menu">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.5h16M4 12h16M4 17.5h16"/></svg>
+          ${icon("menu", "h-5 w-5")}
         </button>
       </div>
     </div>
@@ -141,186 +139,28 @@
     <!-- Mobile Drawer Navigation -->
     <div id="mobile-nav" class="hidden border-t border-slate-200 bg-white lg:hidden">
       <nav class="pad flex flex-col gap-1 py-4" aria-label="Mobile Navigation Menu">
-        <a href="index.html" class="rounded-xl px-4 py-3 text-sm font-semibold transition text-slate-700 hover:bg-slate-50">Home</a>
-        <a href="products.html" class="rounded-xl px-4 py-3 text-sm font-semibold transition text-slate-700 hover:bg-slate-50">Shop</a>
-        <a href="categories.html" class="rounded-xl px-4 py-3 text-sm font-semibold transition text-slate-700 hover:bg-slate-50">Categories</a>
-        <a href="deals.html" class="rounded-xl px-4 py-3 text-sm font-semibold transition text-slate-700 hover:bg-slate-50">Deals</a>
-        <a href="blog.html" class="rounded-xl px-4 py-3 text-sm font-semibold transition text-slate-700 hover:bg-slate-50">Blog</a>
-        <a href="about.html" class="rounded-xl px-4 py-3 text-sm font-semibold transition text-slate-700 hover:bg-slate-50">About</a>
-        <a href="contact.html" class="rounded-xl px-4 py-3 text-sm font-semibold transition text-slate-700 hover:bg-slate-50">Contact</a>
+        ${items.map(([h, l, k]) => link(h, l, k, true)).join("\n        ")}
       </nav>
       <div class="pad border-t border-slate-100 py-3.5 space-y-2 text-xs font-semibold text-slate-600">
         <a href="tracking.html" class="flex items-center gap-2 py-1.5 hover:text-brand transition">
-          <svg class="h-4 w-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5h13v10H2zM15 9h4l3 3v3h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+          ${icon("truck", "h-4 w-4 text-slate-400")}
           Track Order
         </a>
         <a href="orders.html" class="flex items-center gap-2 py-1.5 hover:text-brand transition">
-          <svg class="h-4 w-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          ${icon("clock", "h-4 w-4 text-slate-400")}
           My Past Orders
         </a>
         <a href="login.html" class="flex items-center gap-2 py-1.5 hover:text-brand transition">
-          <svg class="h-4 w-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7.5" r="4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>
+          ${icon("user", "h-4 w-4 text-slate-400")}
           Sign In / Create Account
         </a>
       </div>
     </div>
   </header>
+`;
+}
 
-  <main id="main">
-
-    
-  <nav class="pad site-max pt-6 text-xs text-slate-500" aria-label="Breadcrumb">
-    <ol class="flex flex-wrap items-center gap-2" itemscope itemtype="https://schema.org/BreadcrumbList">
-      
-        <li class="flex items-center gap-2" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a class="hover:text-brand transition font-medium text-slate-600" href="index.html" itemprop="item"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" /><span aria-hidden="true" class="text-slate-300">/</span>
-        </li>
-        <li class="flex items-center gap-2" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <span class="font-bold text-brand-ink" itemprop="name">My Account</span><meta itemprop="position" content="2" />
-        </li>
-    </ol>
-  </nav>
-
-
-    <div class="pad site-max py-8">
-      <!-- Welcome Header -->
-      <div class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-slate-200/80 pb-6 gap-4">
-        <div class="flex items-center gap-4">
-          <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-soft text-brand font-black text-xl">
-            RM
-          </div>
-          <div>
-            <h1 class="text-2xl font-extrabold text-brand-ink">Hello, Rahul Mehta</h1>
-            <p class="text-xs text-slate-500">rahul.mehta@example.com • Member since Jan 2025</p>
-          </div>
-        </div>
-        <a href="login.html" class="inline-flex min-h-10 items-center justify-center rounded-xl border border-slate-200 bg-white px-4 text-xs font-bold text-slate-700 hover:bg-slate-50 transition">
-          Sign Out
-        </a>
-      </div>
-
-      <!-- Customer Account Layout -->
-      <div class="grid gap-8 lg:grid-cols-[260px_1fr]">
-        
-        <!-- Account Sidebar Navigation -->
-        <aside class="space-y-1">
-          <a href="account.html" class="flex items-center gap-3 rounded-xl bg-brand-soft px-4 py-3 text-xs font-bold text-brand">
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7.5" r="4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>
-            <span>Overview &amp; Profile</span>
-          </a>
-          <a href="orders.html" class="flex items-center gap-3 rounded-xl px-4 py-3 text-xs font-bold text-slate-700 hover:bg-slate-50 transition">
-            <svg class="h-4 w-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16.5 9.4-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12"/></svg>
-            <span>My Orders (4)</span>
-          </a>
-          <a href="wishlist.html" class="flex items-center gap-3 rounded-xl px-4 py-3 text-xs font-bold text-slate-700 hover:bg-slate-50 transition">
-            <svg class="h-4 w-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.2 4.6 13a5.2 5.2 0 0 1 0-7.4 5.2 5.2 0 0 1 7.4 0L12 6.6l.4-.4a5.2 5.2 0 0 1 7.4 0 5.2 5.2 0 0 1 0 7.4L12 20.2z"/></svg>
-            <span>Saved Wishlist (4)</span>
-          </a>
-          <a href="tracking.html" class="flex items-center gap-3 rounded-xl px-4 py-3 text-xs font-bold text-slate-700 hover:bg-slate-50 transition">
-            <svg class="h-4 w-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5h13v10H2zM15 9h4l3 3v3h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
-            <span>Track Shipments</span>
-          </a>
-          <a href="contact.html" class="flex items-center gap-3 rounded-xl px-4 py-3 text-xs font-bold text-slate-700 hover:bg-slate-50 transition">
-            <svg class="h-4 w-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
-            <span>Help &amp; Support</span>
-          </a>
-        </aside>
-
-        <!-- Main Account Content Area -->
-        <div class="space-y-8">
-          
-          <!-- Recent Order Snapshot -->
-          <div class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
-              <div>
-                <h2 class="text-sm sm:text-base font-extrabold text-brand-ink">Most Recent Order</h2>
-                <p class="text-xs text-slate-500">Order #KZ-10482 • Placed 6 Oct 2026</p>
-              </div>
-              <span class="inline-flex items-center gap-1.5 rounded-full bg-brand-soft px-3 py-1 text-xs font-bold text-brand">
-                <span class="h-1.5 w-1.5 rounded-full bg-brand animate-pulse"></span>
-                In Transit
-              </span>
-            </div>
-            
-            <div class="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <div class="flex items-center gap-3.5">
-                <span class="flex h-16 w-16 items-center justify-center rounded-xl bg-[#F6F8FB] p-1">
-                  <img src="assets/p-headphones.webp" alt="Headphones" class="h-12 w-auto object-contain">
-                </span>
-                <div>
-                  <h3 class="text-xs sm:text-sm font-bold text-brand-ink">Wireless Headphones Pro</h3>
-                  <p class="text-xs text-slate-500">Space Black • Bluetooth 5.3</p>
-                  <p class="text-xs font-bold text-brand mt-0.5">₹2,799</p>
-                </div>
-              </div>
-
-              <div class="flex items-center gap-2">
-                <a href="tracking.html" class="inline-flex min-h-10 items-center gap-1.5 rounded-xl bg-brand px-4 text-xs font-bold text-white hover:bg-brand-dark transition">
-                  <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5h13v10H2zM15 9h4l3 3v3h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
-                  <span>Track Package</span>
-                </a>
-                <a href="orders.html" class="inline-flex min-h-10 items-center rounded-xl border border-slate-200 bg-white px-4 text-xs font-bold text-slate-700 hover:bg-slate-50 transition">
-                  View All Orders
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Saved Addresses Grid -->
-          <div class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
-              <h2 class="text-sm sm:text-base font-extrabold text-brand-ink">Saved Delivery Addresses</h2>
-              <button type="button" class="text-xs font-bold text-brand hover:underline">+ Add New</button>
-            </div>
-
-            <div class="mt-4 grid gap-4 sm:grid-cols-2">
-              <div class="rounded-xl border-2 border-brand bg-brand-soft/30 p-4">
-                <div class="flex items-center justify-between">
-                  <span class="rounded bg-brand px-2 py-0.5 text-[10px] font-black text-white">Default Address</span>
-                  <span class="text-xs font-bold text-slate-400">Home</span>
-                </div>
-                <p class="mt-2 text-xs font-bold text-brand-ink">Rahul Mehta</p>
-                <p class="mt-1 text-xs text-slate-500 leading-relaxed">Flat 402, Royal Palms, MG Road, Vijay Nagar<br>Indore, Madhya Pradesh 452010</p>
-                <p class="mt-2 text-xs font-bold text-slate-600">+91 98765 43210</p>
-              </div>
-
-              <div class="rounded-xl border border-slate-200 p-4">
-                <div class="flex items-center justify-between">
-                  <span class="text-xs font-bold text-slate-400">Office</span>
-                  <button type="button" class="text-xs font-bold text-brand hover:underline">Set Default</button>
-                </div>
-                <p class="mt-2 text-xs font-bold text-brand-ink">Rahul Mehta</p>
-                <p class="mt-1 text-xs text-slate-500 leading-relaxed">Suite 502, Business Center, AB Road<br>Indore, Madhya Pradesh 452001</p>
-                <p class="mt-2 text-xs font-bold text-slate-600">+91 98765 43210</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Profile Details Form -->
-          <div class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm">
-            <h2 class="text-sm sm:text-base font-extrabold text-brand-ink border-b border-slate-100 pb-4">Personal Details</h2>
-            <form class="mt-4 grid gap-4 sm:grid-cols-2">
-              <div>
-                <label class="block text-xs font-bold text-slate-600">Full Name</label>
-                <input class="mt-1.5 min-h-11 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3.5 text-xs sm:text-sm font-semibold text-brand-ink" value="Rahul Mehta">
-              </div>
-              <div>
-                <label class="block text-xs font-bold text-slate-600">Email Address</label>
-                <input class="mt-1.5 min-h-11 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3.5 text-xs sm:text-sm font-semibold text-brand-ink" value="rahul.mehta@example.com">
-              </div>
-              <div class="sm:col-span-2">
-                <button type="button" class="inline-flex min-h-11 items-center justify-center rounded-xl bg-brand px-6 text-xs sm:text-sm font-bold text-white hover:bg-brand-dark transition">
-                  Save Changes
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </main>
-
+export const cartDrawer = `
   <!-- Cart Drawer Component matching index.html -->
   <div id="cart-drawer" class="drawer-backdrop fixed inset-0 z-[80] bg-slate-950/60 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
     <div class="drawer-panel ml-auto flex h-full w-full max-w-md flex-col bg-white shadow-2xl">
@@ -331,14 +171,14 @@
           <span id="drawer-cart-count" class="rounded-full bg-brand-soft px-2.5 py-0.5 text-xs font-black text-brand">2</span>
         </div>
         <button type="button" data-cart-drawer-close class="flex h-9 w-9 items-center justify-center rounded-full text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition" aria-label="Close cart drawer">
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          ${icon("close", "h-4 w-4")}
         </button>
       </div>
 
       <!-- Free Shipping Meter -->
       <div class="border-b border-slate-100 bg-slate-50/70 px-6 py-3.5">
         <div class="flex items-center justify-between text-xs font-semibold text-brand-ink">
-          <span id="drawer-shipping-text" class="inline-flex items-center gap-1.5"><span class="text-emerald-600"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span>You unlocked <strong>FREE Delivery!</strong></span></span>
+          <span id="drawer-shipping-text" class="inline-flex items-center gap-1.5"><span class="text-emerald-600">${icon("check", "h-3.5 w-3.5")}</span><span>You unlocked <strong>FREE Delivery!</strong></span></span>
           <span class="text-emerald-600 font-extrabold">₹499+ Goal Met</span>
         </div>
         <div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
@@ -359,14 +199,14 @@
                 <p class="text-[11px] text-slate-500">Space Black • Bluetooth 5.3</p>
               </div>
               <button type="button" class="drawer-remove-item text-slate-400 hover:text-rose-500 transition" aria-label="Remove item">
-                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14zM10 11v6M14 11v6"/></svg>
+                ${icon("trash", "h-4 w-4")}
               </button>
             </div>
             <div class="mt-2.5 flex items-center justify-between">
               <div data-qty data-min="1" data-max="5" class="inline-flex items-center rounded-lg border border-slate-200 bg-slate-50">
-                <button type="button" class="qty-btn qty-minus flex h-7 w-7 items-center justify-center text-slate-600 hover:text-slate-900" aria-label="Decrease quantity"><svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+                <button type="button" class="qty-btn qty-minus flex h-7 w-7 items-center justify-center text-slate-600 hover:text-slate-900" aria-label="Decrease quantity">${icon("minus", "h-3 w-3")}</button>
                 <span data-qty-value class="min-w-[1.5rem] text-center text-xs font-bold text-brand-ink">1</span>
-                <button type="button" class="qty-btn qty-plus flex h-7 w-7 items-center justify-center text-slate-600 hover:text-slate-900" aria-label="Increase quantity"><svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+                <button type="button" class="qty-btn qty-plus flex h-7 w-7 items-center justify-center text-slate-600 hover:text-slate-900" aria-label="Increase quantity">${icon("plus", "h-3 w-3")}</button>
               </div>
               <p class="text-xs sm:text-sm font-extrabold text-brand-ink">₹2,799</p>
             </div>
@@ -384,14 +224,14 @@
                 <p class="text-[11px] text-slate-500">Midnight Blue • AMOLED</p>
               </div>
               <button type="button" class="drawer-remove-item text-slate-400 hover:text-rose-500 transition" aria-label="Remove item">
-                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14zM10 11v6M14 11v6"/></svg>
+                ${icon("trash", "h-4 w-4")}
               </button>
             </div>
             <div class="mt-2.5 flex items-center justify-between">
               <div data-qty data-min="1" data-max="5" class="inline-flex items-center rounded-lg border border-slate-200 bg-slate-50">
-                <button type="button" class="qty-btn qty-minus flex h-7 w-7 items-center justify-center text-slate-600 hover:text-slate-900" aria-label="Decrease quantity"><svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+                <button type="button" class="qty-btn qty-minus flex h-7 w-7 items-center justify-center text-slate-600 hover:text-slate-900" aria-label="Decrease quantity">${icon("minus", "h-3 w-3")}</button>
                 <span data-qty-value class="min-w-[1.5rem] text-center text-xs font-bold text-brand-ink">1</span>
-                <button type="button" class="qty-btn qty-plus flex h-7 w-7 items-center justify-center text-slate-600 hover:text-slate-900" aria-label="Increase quantity"><svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+                <button type="button" class="qty-btn qty-plus flex h-7 w-7 items-center justify-center text-slate-600 hover:text-slate-900" aria-label="Increase quantity">${icon("plus", "h-3 w-3")}</button>
               </div>
               <p class="text-xs sm:text-sm font-extrabold text-brand-ink">₹3,499</p>
             </div>
@@ -427,19 +267,20 @@
       </div>
     </div>
   </div>
+`;
 
-
+export const searchModal = `
   <!-- Predictive Global Search Modal matching index.html -->
   <div id="search-modal" class="modal-backdrop fixed inset-0 z-[80] flex items-start justify-center bg-slate-950/60 p-4 pt-16 backdrop-blur-sm sm:pt-24" role="dialog" aria-modal="true" aria-labelledby="modal-search-label">
     <div class="modal-panel w-full max-w-2xl rounded-3xl bg-white p-6 shadow-2xl">
       <div class="flex items-center justify-between gap-3 border-b border-slate-100 pb-4">
         <form class="flex flex-1 items-center gap-3" action="search.html" method="get" role="search">
-          <span class="text-brand"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7.5"/><path d="m20 20-3.8-3.8"/></svg></span>
+          <span class="text-brand">${icon("search", "h-5 w-5")}</span>
           <label id="modal-search-label" for="search-modal-input" class="sr-only">Search products</label>
           <input id="search-modal-input" name="q" type="search" placeholder="Search by product name, brand, or category..." class="w-full text-base font-semibold text-brand-ink outline-none placeholder:text-slate-400">
         </form>
         <button type="button" data-search-modal-close class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 transition" aria-label="Close search overlay">
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          ${icon("close", "h-4 w-4")}
         </button>
       </div>
 
@@ -489,13 +330,14 @@
       <div class="mt-4 border-t border-slate-100 pt-3 text-center">
         <a href="products.html" class="text-xs font-bold text-brand hover:underline inline-flex items-center gap-1">
           <span>View All Products in Catalog</span>
-          <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          ${icon("arrow-right", "h-3.5 w-3.5")}
         </a>
       </div>
     </div>
   </div>
+`;
 
-
+export const footer = `
   <footer class="border-t border-slate-200 bg-white">
     <div class="pad site-max grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-5">
       <!-- Brand & Mission Column -->
@@ -573,7 +415,109 @@
     </div>
   </footer>
   <script src="assets/kartzo.js"></script>
+`;
 
+export function productCard({ href = "product.html", img, alt, badge, badgeClass = "bg-[#ef3b3b]", name, sub, rating, price, mrp, data }) {
+  const ratingNum = parseFloat(rating.split(" ")[0]) || 4.8;
+  return `
+    <article class="product-card group rounded-2xl border border-slate-200/80 bg-white p-3 sm:p-4 shadow-sm hover:border-brand/40 hover:shadow-card transition duration-200" data-name="${data}" data-cat="${data.split(" ")[0]}">
+      <div class="image-wrap relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl bg-[#F6F8FB] p-3">
+        ${badge ? `<span class="absolute left-2.5 top-2.5 z-10 rounded-md ${badgeClass} text-white px-2 py-0.5 text-[10px] font-black tracking-wide shadow-sm">${badge}</span>` : ""}
+        <button type="button" class="wish-btn absolute right-2.5 top-2.5 z-10 flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-white text-slate-500 shadow-sm transition hover:scale-105 hover:text-rose-500" aria-pressed="false" aria-label="Add ${name} to wishlist">
+          ${icon("heart", "h-4 w-4")}
+        </button>
+        <a href="${href}" class="flex h-full w-full items-center justify-center">
+          <img src="${img}" alt="${alt}" width="800" height="800" class="h-full w-auto max-h-[85%] object-contain transition duration-200 group-hover:scale-105" loading="lazy">
+        </a>
+      </div>
 
+      <div class="mt-3.5 flex flex-1 flex-col justify-between">
+        <div>
+          <p class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">${sub}</p>
+          <h3 class="mt-1 text-xs sm:text-sm font-bold text-brand-ink leading-snug line-clamp-2">
+            <a href="${href}" class="hover:text-brand transition">${name}</a>
+          </h3>
+          <div class="mt-1.5 flex items-center gap-1.5 text-xs text-slate-500">
+            ${stars(ratingNum)}
+            <span class="text-[11px] font-bold text-brand-ink">${rating.split(" ")[0]}</span>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <div class="flex items-baseline justify-between gap-1">
+            <span class="text-sm sm:text-base font-black text-brand-ink">${price}</span>
+            <span class="text-xs text-slate-400 line-through font-medium">${mrp}</span>
+          </div>
+          <button type="button" class="add-cart quick-add-btn mt-2.5 flex min-h-11 w-full items-center justify-center rounded-xl bg-brand text-xs font-bold text-white hover:bg-brand-dark transition active:scale-[0.98]">
+            Add to Bag
+          </button>
+        </div>
+      </div>
+    </article>`;
+}
+
+export const products = [
+  { href: "product.html", img: "assets/p-headphones.webp", alt: "Wireless Headphones", badge: "30% OFF", badgeClass: "bg-rose-500", name: "Wireless Headphones Pro", sub: "Bluetooth 5.3", rating: "4.8 2.1K", price: "₹2,799", mrp: "₹3,999", data: "electronics headphones bluetooth audio" },
+  { href: "product.html", img: "assets/p-watch.webp", alt: "Smart Watch", badge: "40% OFF", badgeClass: "bg-rose-500", name: "Smart Watch AMOLED", sub: "Health & Fitness", rating: "4.6 1.8K", price: "₹3,499", mrp: "₹5,832", data: "electronics watch amoled wearables" },
+  { href: "product.html", img: "assets/p-shoes.webp", alt: "Running Shoes", badge: "40% OFF", badgeClass: "bg-rose-500", name: "Men's Running Shoes", sub: "Footwear & Sport", rating: "4.7 2.6K", price: "₹2,399", mrp: "₹3,998", data: "fashion shoes running sneakers" },
+  { href: "product.html", img: "assets/p-phone.webp", alt: "Smartphone", badge: "25% OFF", badgeClass: "bg-rose-500", name: "Smartphone 128GB", sub: "Mobile Tech", rating: "4.8 4.1K", price: "₹54,999", mrp: "₹73,332", data: "electronics mobile phone smartphone" },
+  { href: "product.html", img: "assets/p-fryer.webp", alt: "Air Fryer", badge: "25% OFF", badgeClass: "bg-rose-500", name: "Air Fryer 5L Rapid", sub: "Kitchen Appliance", rating: "4.5 1.3K", price: "₹4,499", mrp: "₹5,999", data: "kitchen fryer airfryer appliance" },
+  { href: "product.html", img: "assets/p-backpack.webp", alt: "Backpack", badge: "30% OFF", badgeClass: "bg-rose-500", name: "Laptop Backpack 25L", sub: "Travel & Daily", rating: "4.6 2.5K", price: "₹1,299", mrp: "₹1,856", data: "bags backpack travel laptop" },
+  { href: "product.html", img: "assets/p-earbuds.webp", alt: "TWS Earbuds", badge: "NEW", badgeClass: "bg-brand", name: "TWS Earbuds Active", sub: "Noise Cancellation", rating: "4.7 1.5K", price: "₹1,999", mrp: "₹2,799", data: "electronics earbuds audio wireless" },
+  { href: "product.html", img: "assets/p-perfume.webp", alt: "Perfume", badge: "NEW", badgeClass: "bg-brand", name: "Premium Perfume 100ml", sub: "Fragrance", rating: "4.5 1.3K", price: "₹1,299", mrp: "₹1,999", data: "beauty perfume fragrance grooming" },
+  { href: "product.html", img: "assets/p-blender.webp", alt: "Blender", badge: "NEW", badgeClass: "bg-brand", name: "Portable Blender 400ml", sub: "Kitchen & Travel", rating: "4.6 982", price: "₹1,799", mrp: "₹2,399", data: "kitchen blender juice portable" },
+  { href: "product.html", img: "assets/p-sunglasses.webp", alt: "Sunglasses", badge: "NEW", badgeClass: "bg-brand", name: "UV Polarized Sunglasses", sub: "Eyewear", rating: "4.4 654", price: "₹1,399", mrp: "₹1,999", data: "fashion sunglasses eyewear uv" },
+  { href: "product.html", img: "assets/p-luggage.webp", alt: "Luggage", badge: "NEW", badgeClass: "bg-brand", name: "Travel Luggage Cabin 20\"", sub: "Luggage & Travel", rating: "4.6 1.1K", price: "₹2,999", mrp: "₹4,499", data: "bags luggage suitcase travel" },
+  { href: "product.html", img: "assets/p-chair.webp", alt: "Gaming Chair", badge: "NEW", badgeClass: "bg-brand", name: "Ergonomic Desk Chair", sub: "Home Office", rating: "4.8 765", price: "₹8,999", mrp: "₹12,999", data: "home chair ergonomic office" }
+];
+
+export const cats = [
+  ["Audio & Electronics", "assets/p-headphones.webp", "24 Products", "Bluetooth audio, smart wearables, fast chargers"],
+  ["Footwear & Fashion", "assets/c-fashion.webp", "36 Products", "Running sneakers, outerwear, active accessories"],
+  ["Home & Living", "assets/c-home.webp", "18 Products", "Ergonomic seating, organizers, desk lighting"],
+  ["Beauty & Grooming", "assets/p-perfume.webp", "15 Products", "Fine fragrances, personal care, grooming tools"],
+  ["Kitchen Appliances", "assets/p-fryer.webp", "12 Products", "Air fryers, portable blenders, cookware"],
+  ["Sports & Training", "assets/p-shoes.webp", "20 Products", "Fitness equipment, bottles, gym essentials"],
+  ["Toys & STEM", "assets/c-toys.webp", "14 Products", "STEM kits, puzzles, creative hobby gear"],
+  ["Mobile Accessories", "assets/p-phone.webp", "28 Products", "Protective cases, braided cables, power banks"],
+  ["Bags & Travel", "assets/p-backpack.webp", "16 Products", "Waterproof backpacks, cabin trolley bags"],
+  ["Wellness Essentials", "assets/c-health.webp", "10 Products", "Ergonomic supports, massage therapy tools"]
+];
+
+export const crumbs = (items) => `
+  <nav class="pad site-max pt-6 text-xs text-slate-500" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-2" itemscope itemtype="https://schema.org/BreadcrumbList">
+      ${items.map((item, i) => `
+        <li class="flex items-center gap-2" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          ${i === items.length - 1
+            ? `<span class="font-bold text-brand-ink" itemprop="name">${item.label}</span><meta itemprop="position" content="${i + 1}" />`
+            : `<a class="hover:text-brand transition font-medium text-slate-600" href="${item.href}" itemprop="item"><span itemprop="name">${item.label}</span></a><meta itemprop="position" content="${i + 1}" /><span aria-hidden="true" class="text-slate-300">/</span>`
+          }
+        </li>`
+      ).join("")}
+    </ol>
+  </nav>
+`;
+
+export function page(file, title, description, active, body, extraScript = "") {
+  // RULE #1: NEVER OVERWRITE index.html
+  if (file === "index.html") {
+    console.log("Protected index.html — skipping write.");
+    return;
+  }
+  const html = `${head(title, description)}
+${announcementBar}
+${nav(active)}
+  <main id="main">
+${body}
+  </main>
+${cartDrawer}
+${searchModal}
+${footer}
+${extraScript}
 </body>
 </html>
+`;
+  writeFileSync(join(root, file), html);
+  console.log("wrote", file);
+}

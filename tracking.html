@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Wishlist — Kartzo</title>
-  <meta name="description" content="Saved favorites and products on your Kartzo wishlist ready for quick checkout.">
+  <title>Track Your Order — Kartzo</title>
+  <meta name="description" content="Real-time shipment tracking for all Kartzo deliveries with live checkpoint status.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
@@ -73,9 +73,9 @@
         
       </a>
         
-      <a href="products.html" class="relative inline-flex h-full items-center px-3.5 text-sm font-semibold transition text-brand font-bold">
+      <a href="products.html" class="relative inline-flex h-full items-center px-3.5 text-sm font-semibold transition text-slate-700 hover:text-brand">
         Shop
-        <span class="absolute bottom-0 inset-x-3.5 h-0.5 bg-brand rounded-full"></span>
+        
       </a>
         
       <a href="categories.html" class="relative inline-flex h-full items-center px-3.5 text-sm font-semibold transition text-slate-700 hover:text-brand">
@@ -142,7 +142,7 @@
     <div id="mobile-nav" class="hidden border-t border-slate-200 bg-white lg:hidden">
       <nav class="pad flex flex-col gap-1 py-4" aria-label="Mobile Navigation Menu">
         <a href="index.html" class="rounded-xl px-4 py-3 text-sm font-semibold transition text-slate-700 hover:bg-slate-50">Home</a>
-        <a href="products.html" class="rounded-xl px-4 py-3 text-sm font-semibold transition bg-brand-soft text-brand font-bold">Shop</a>
+        <a href="products.html" class="rounded-xl px-4 py-3 text-sm font-semibold transition text-slate-700 hover:bg-slate-50">Shop</a>
         <a href="categories.html" class="rounded-xl px-4 py-3 text-sm font-semibold transition text-slate-700 hover:bg-slate-50">Categories</a>
         <a href="deals.html" class="rounded-xl px-4 py-3 text-sm font-semibold transition text-slate-700 hover:bg-slate-50">Deals</a>
         <a href="blog.html" class="rounded-xl px-4 py-3 text-sm font-semibold transition text-slate-700 hover:bg-slate-50">Blog</a>
@@ -176,188 +176,106 @@
           <a class="hover:text-brand transition font-medium text-slate-600" href="index.html" itemprop="item"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" /><span aria-hidden="true" class="text-slate-300">/</span>
         </li>
         <li class="flex items-center gap-2" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <span class="font-bold text-brand-ink" itemprop="name">My Wishlist</span><meta itemprop="position" content="2" />
+          <a class="hover:text-brand transition font-medium text-slate-600" href="orders.html" itemprop="item"><span itemprop="name">Orders</span></a><meta itemprop="position" content="2" /><span aria-hidden="true" class="text-slate-300">/</span>
+        </li>
+        <li class="flex items-center gap-2" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span class="font-bold text-brand-ink" itemprop="name">Track Package</span><meta itemprop="position" content="3" />
         </li>
     </ol>
   </nav>
 
 
-    <div class="pad site-max py-8">
-      <div class="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between border-b border-slate-200/80 pb-6">
-        <div>
-          <span class="inline-flex items-center gap-1.5 rounded-full bg-rose-50 px-3 py-1 text-xs font-bold text-rose-600">
-            <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.2 4.6 13a5.2 5.2 0 0 1 0-7.4 5.2 5.2 0 0 1 7.4 0L12 6.6l.4-.4a5.2 5.2 0 0 1 7.4 0 5.2 5.2 0 0 1 0 7.4L12 20.2z"/></svg>
-            Saved Items
+    <div class="pad site-max py-8 max-w-4xl mx-auto">
+      <div class="mb-8 border-b border-slate-200/80 pb-6 text-center">
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-brand-soft px-3 py-1 text-xs font-bold text-brand">
+          <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5h13v10H2zM15 9h4l3 3v3h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+          Courier Tracking
+        </span>
+        <h1 class="mt-2 text-2xl sm:text-4xl font-extrabold tracking-tight text-brand-ink">
+          Track Your Shipment
+        </h1>
+        <p class="mt-1 text-xs sm:text-sm text-slate-500">Enter your Order ID and registered phone number to look up live status.</p>
+      </div>
+
+      <!-- Tracking Lookup Form -->
+      <form class="rounded-2xl border border-slate-200/80 bg-white p-5 sm:p-7 shadow-sm">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <label class="block text-xs font-bold text-slate-600">Order ID (e.g. KZ-10482)
+            <input required class="mt-1.5 min-h-11 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3.5 text-xs sm:text-sm font-semibold text-brand-ink outline-none focus:border-brand focus:bg-white" value="KZ-10482">
+          </label>
+          <label class="block text-xs font-bold text-slate-600">Mobile Number / Email
+            <input required class="mt-1.5 min-h-11 w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3.5 text-xs sm:text-sm font-semibold text-brand-ink outline-none focus:border-brand focus:bg-white" value="+91 98765 43210">
+          </label>
+        </div>
+        <button type="button" class="mt-4 flex min-h-11 w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-brand px-6 text-xs sm:text-sm font-bold text-white shadow-sm hover:bg-brand-dark transition">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7.5"/><path d="m20 20-3.8-3.8"/></svg>
+          <span>Track Order Details</span>
+        </button>
+      </form>
+
+      <!-- Active Shipment Status Card -->
+      <div class="mt-8 rounded-2xl border border-slate-200/80 bg-white p-6 sm:p-8 shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-5">
+          <div>
+            <span class="rounded bg-brand-soft px-2.5 py-0.5 text-xs font-bold text-brand">Shipped via Blue Dart Express</span>
+            <h2 class="mt-1.5 text-base sm:text-lg font-black text-brand-ink">Order KZ-10482 • AWB: BD-84920482</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Estimated Delivery: <strong class="text-brand-ink">Friday, 10 Oct 2026</strong></p>
+          </div>
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-brand-soft px-3 py-1 text-xs font-bold text-brand">
+            <span class="h-2 w-2 rounded-full bg-brand animate-pulse"></span>
+            In Transit
           </span>
-          <h1 class="mt-2 text-2xl sm:text-4xl font-extrabold tracking-tight text-brand-ink">
-            My Wishlist
-          </h1>
-          <p class="mt-1 text-xs sm:text-sm text-slate-500">
-            <span id="wishlist-page-count" class="font-bold text-brand-ink">4</span> saved products ready to purchase.
-          </p>
         </div>
-        <a href="products.html" class="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-brand hover:underline mt-2 sm:mt-0">
-          <span>Discover More Products</span>
-          <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-      </div>
 
-      <!-- Wishlist Product Grid Using Canonical Master ProductCard Component -->
-      <div id="wishlist-grid" class="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-3 lg:grid-cols-4">
-        
-    <article class="product-card group rounded-2xl border border-slate-200/80 bg-white p-3 sm:p-4 shadow-sm hover:border-brand/40 hover:shadow-card transition duration-200" data-name="electronics headphones bluetooth audio" data-cat="electronics">
-      <div class="image-wrap relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl bg-[#F6F8FB] p-3">
-        <span class="absolute left-2.5 top-2.5 z-10 rounded-md bg-rose-500 text-white px-2 py-0.5 text-[10px] font-black tracking-wide shadow-sm">30% OFF</span>
-        <button type="button" class="wish-btn absolute right-2.5 top-2.5 z-10 flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-white text-slate-500 shadow-sm transition hover:scale-105 hover:text-rose-500" aria-pressed="false" aria-label="Add Wireless Headphones Pro to wishlist">
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.2 4.6 13a5.2 5.2 0 0 1 0-7.4 5.2 5.2 0 0 1 7.4 0L12 6.6l.4-.4a5.2 5.2 0 0 1 7.4 0 5.2 5.2 0 0 1 0 7.4L12 20.2z"/></svg>
-        </button>
-        <a href="product.html" class="flex h-full w-full items-center justify-center">
-          <img src="assets/p-headphones.webp" alt="Wireless Headphones" width="800" height="800" class="h-full w-auto max-h-[85%] object-contain transition duration-200 group-hover:scale-105" loading="lazy">
-        </a>
-      </div>
+        <!-- 4-Step Progress Milestone -->
+        <ol class="mt-8 grid gap-4 grid-cols-2 sm:grid-cols-4">
+          <li class="rounded-xl bg-emerald-50 p-4 text-center">
+            <span class="mx-auto flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600 text-white text-xs font-bold">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+            <span class="mt-2 block text-xs font-extrabold text-emerald-800">Order Confirmed</span>
+            <span class="block text-[10px] text-slate-500">6 Oct, 10:30 AM</span>
+          </li>
+          <li class="rounded-xl bg-emerald-50 p-4 text-center">
+            <span class="mx-auto flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600 text-white text-xs font-bold">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+            <span class="mt-2 block text-xs font-extrabold text-emerald-800">Packed &amp; Dispatched</span>
+            <span class="block text-[10px] text-slate-500">6 Oct, 04:15 PM</span>
+          </li>
+          <li class="rounded-xl bg-brand-soft p-4 text-center ring-2 ring-brand/30">
+            <span class="mx-auto flex h-8 w-8 items-center justify-center rounded-full bg-brand text-white text-xs font-bold">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5h13v10H2zM15 9h4l3 3v3h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+            </span>
+            <span class="mt-2 block text-xs font-extrabold text-brand">In Transit</span>
+            <span class="block text-[10px] text-slate-500">Hub Mumbai</span>
+          </li>
+          <li class="rounded-xl bg-slate-50 p-4 text-center">
+            <span class="mx-auto flex h-8 w-8 items-center justify-center rounded-full bg-slate-200 text-slate-400 text-xs font-bold">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16.5 9.4-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12"/></svg>
+            </span>
+            <span class="mt-2 block text-xs font-extrabold text-slate-400">Out for Delivery</span>
+            <span class="block text-[10px] text-slate-400">Expected 10 Oct</span>
+          </li>
+        </ol>
 
-      <div class="mt-3.5 flex flex-1 flex-col justify-between">
-        <div>
-          <p class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Bluetooth 5.3</p>
-          <h3 class="mt-1 text-xs sm:text-sm font-bold text-brand-ink leading-snug line-clamp-2">
-            <a href="product.html" class="hover:text-brand transition">Wireless Headphones Pro</a>
-          </h3>
-          <div class="mt-1.5 flex items-center gap-1.5 text-xs text-slate-500">
-            <span class="inline-flex items-center gap-0.5" aria-hidden="true"><svg class="h-3.5 w-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg><svg class="h-3.5 w-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg><svg class="h-3.5 w-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg><svg class="h-3.5 w-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg><svg class="h-3.5 w-3.5 text-slate-200 fill-slate-200" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg></span>
-            <span class="text-[11px] font-bold text-brand-ink">4.8</span>
+        <!-- Checkpoints Table -->
+        <div class="mt-8 border-t border-slate-100 pt-6">
+          <h3 class="text-xs font-extrabold uppercase tracking-wider text-brand-ink">Milestone History</h3>
+          <div class="mt-4 space-y-3 text-xs">
+            <div class="flex items-start gap-4">
+              <span class="w-28 font-bold text-slate-400 shrink-0">8 Oct, 06:40 AM</span>
+              <p class="font-bold text-brand-ink">Departed Mumbai Sorting Facility (En route to Indore Hub)</p>
+            </div>
+            <div class="flex items-start gap-4">
+              <span class="w-28 font-bold text-slate-400 shrink-0">7 Oct, 09:12 PM</span>
+              <p class="text-slate-500">Arrived at Mumbai Central Logistics Center</p>
+            </div>
+            <div class="flex items-start gap-4">
+              <span class="w-28 font-bold text-slate-400 shrink-0">6 Oct, 05:00 PM</span>
+              <p class="text-slate-500">Package scanned and picked up by Blue Dart courier</p>
+            </div>
           </div>
-        </div>
-
-        <div class="mt-3">
-          <div class="flex items-baseline justify-between gap-1">
-            <span class="text-sm sm:text-base font-black text-brand-ink">₹2,799</span>
-            <span class="text-xs text-slate-400 line-through font-medium">₹3,999</span>
-          </div>
-          <button type="button" class="add-cart quick-add-btn mt-2.5 flex min-h-11 w-full items-center justify-center rounded-xl bg-brand text-xs font-bold text-white hover:bg-brand-dark transition active:scale-[0.98]">
-            Add to Bag
-          </button>
-        </div>
-      </div>
-    </article>
-        
-    <article class="product-card group rounded-2xl border border-slate-200/80 bg-white p-3 sm:p-4 shadow-sm hover:border-brand/40 hover:shadow-card transition duration-200" data-name="electronics watch amoled wearables" data-cat="electronics">
-      <div class="image-wrap relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl bg-[#F6F8FB] p-3">
-        <span class="absolute left-2.5 top-2.5 z-10 rounded-md bg-rose-500 text-white px-2 py-0.5 text-[10px] font-black tracking-wide shadow-sm">40% OFF</span>
-        <button type="button" class="wish-btn absolute right-2.5 top-2.5 z-10 flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-white text-slate-500 shadow-sm transition hover:scale-105 hover:text-rose-500" aria-pressed="false" aria-label="Add Smart Watch AMOLED to wishlist">
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.2 4.6 13a5.2 5.2 0 0 1 0-7.4 5.2 5.2 0 0 1 7.4 0L12 6.6l.4-.4a5.2 5.2 0 0 1 7.4 0 5.2 5.2 0 0 1 0 7.4L12 20.2z"/></svg>
-        </button>
-        <a href="product.html" class="flex h-full w-full items-center justify-center">
-          <img src="assets/p-watch.webp" alt="Smart Watch" width="800" height="800" class="h-full w-auto max-h-[85%] object-contain transition duration-200 group-hover:scale-105" loading="lazy">
-        </a>
-      </div>
-
-      <div class="mt-3.5 flex flex-1 flex-col justify-between">
-        <div>
-          <p class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Health & Fitness</p>
-          <h3 class="mt-1 text-xs sm:text-sm font-bold text-brand-ink leading-snug line-clamp-2">
-            <a href="product.html" class="hover:text-brand transition">Smart Watch AMOLED</a>
-          </h3>
-          <div class="mt-1.5 flex items-center gap-1.5 text-xs text-slate-500">
-            <span class="inline-flex items-center gap-0.5" aria-hidden="true"><svg class="h-3.5 w-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg><svg class="h-3.5 w-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg><svg class="h-3.5 w-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg><svg class="h-3.5 w-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg><svg class="h-3.5 w-3.5 text-slate-200 fill-slate-200" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg></span>
-            <span class="text-[11px] font-bold text-brand-ink">4.6</span>
-          </div>
-        </div>
-
-        <div class="mt-3">
-          <div class="flex items-baseline justify-between gap-1">
-            <span class="text-sm sm:text-base font-black text-brand-ink">₹3,499</span>
-            <span class="text-xs text-slate-400 line-through font-medium">₹5,832</span>
-          </div>
-          <button type="button" class="add-cart quick-add-btn mt-2.5 flex min-h-11 w-full items-center justify-center rounded-xl bg-brand text-xs font-bold text-white hover:bg-brand-dark transition active:scale-[0.98]">
-            Add to Bag
-          </button>
-        </div>
-      </div>
-    </article>
-        
-    <article class="product-card group rounded-2xl border border-slate-200/80 bg-white p-3 sm:p-4 shadow-sm hover:border-brand/40 hover:shadow-card transition duration-200" data-name="fashion shoes running sneakers" data-cat="fashion">
-      <div class="image-wrap relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl bg-[#F6F8FB] p-3">
-        <span class="absolute left-2.5 top-2.5 z-10 rounded-md bg-rose-500 text-white px-2 py-0.5 text-[10px] font-black tracking-wide shadow-sm">40% OFF</span>
-        <button type="button" class="wish-btn absolute right-2.5 top-2.5 z-10 flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-white text-slate-500 shadow-sm transition hover:scale-105 hover:text-rose-500" aria-pressed="false" aria-label="Add Men's Running Shoes to wishlist">
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.2 4.6 13a5.2 5.2 0 0 1 0-7.4 5.2 5.2 0 0 1 7.4 0L12 6.6l.4-.4a5.2 5.2 0 0 1 7.4 0 5.2 5.2 0 0 1 0 7.4L12 20.2z"/></svg>
-        </button>
-        <a href="product.html" class="flex h-full w-full items-center justify-center">
-          <img src="assets/p-shoes.webp" alt="Running Shoes" width="800" height="800" class="h-full w-auto max-h-[85%] object-contain transition duration-200 group-hover:scale-105" loading="lazy">
-        </a>
-      </div>
-
-      <div class="mt-3.5 flex flex-1 flex-col justify-between">
-        <div>
-          <p class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Footwear & Sport</p>
-          <h3 class="mt-1 text-xs sm:text-sm font-bold text-brand-ink leading-snug line-clamp-2">
-            <a href="product.html" class="hover:text-brand transition">Men's Running Shoes</a>
-          </h3>
-          <div class="mt-1.5 flex items-center gap-1.5 text-xs text-slate-500">
-            <span class="inline-flex items-center gap-0.5" aria-hidden="true"><svg class="h-3.5 w-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg><svg class="h-3.5 w-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg><svg class="h-3.5 w-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg><svg class="h-3.5 w-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg><svg class="h-3.5 w-3.5 text-slate-200 fill-slate-200" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg></span>
-            <span class="text-[11px] font-bold text-brand-ink">4.7</span>
-          </div>
-        </div>
-
-        <div class="mt-3">
-          <div class="flex items-baseline justify-between gap-1">
-            <span class="text-sm sm:text-base font-black text-brand-ink">₹2,399</span>
-            <span class="text-xs text-slate-400 line-through font-medium">₹3,998</span>
-          </div>
-          <button type="button" class="add-cart quick-add-btn mt-2.5 flex min-h-11 w-full items-center justify-center rounded-xl bg-brand text-xs font-bold text-white hover:bg-brand-dark transition active:scale-[0.98]">
-            Add to Bag
-          </button>
-        </div>
-      </div>
-    </article>
-        
-    <article class="product-card group rounded-2xl border border-slate-200/80 bg-white p-3 sm:p-4 shadow-sm hover:border-brand/40 hover:shadow-card transition duration-200" data-name="electronics mobile phone smartphone" data-cat="electronics">
-      <div class="image-wrap relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl bg-[#F6F8FB] p-3">
-        <span class="absolute left-2.5 top-2.5 z-10 rounded-md bg-rose-500 text-white px-2 py-0.5 text-[10px] font-black tracking-wide shadow-sm">25% OFF</span>
-        <button type="button" class="wish-btn absolute right-2.5 top-2.5 z-10 flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-white text-slate-500 shadow-sm transition hover:scale-105 hover:text-rose-500" aria-pressed="false" aria-label="Add Smartphone 128GB to wishlist">
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.2 4.6 13a5.2 5.2 0 0 1 0-7.4 5.2 5.2 0 0 1 7.4 0L12 6.6l.4-.4a5.2 5.2 0 0 1 7.4 0 5.2 5.2 0 0 1 0 7.4L12 20.2z"/></svg>
-        </button>
-        <a href="product.html" class="flex h-full w-full items-center justify-center">
-          <img src="assets/p-phone.webp" alt="Smartphone" width="800" height="800" class="h-full w-auto max-h-[85%] object-contain transition duration-200 group-hover:scale-105" loading="lazy">
-        </a>
-      </div>
-
-      <div class="mt-3.5 flex flex-1 flex-col justify-between">
-        <div>
-          <p class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Mobile Tech</p>
-          <h3 class="mt-1 text-xs sm:text-sm font-bold text-brand-ink leading-snug line-clamp-2">
-            <a href="product.html" class="hover:text-brand transition">Smartphone 128GB</a>
-          </h3>
-          <div class="mt-1.5 flex items-center gap-1.5 text-xs text-slate-500">
-            <span class="inline-flex items-center gap-0.5" aria-hidden="true"><svg class="h-3.5 w-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg><svg class="h-3.5 w-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg><svg class="h-3.5 w-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg><svg class="h-3.5 w-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg><svg class="h-3.5 w-3.5 text-slate-200 fill-slate-200" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 18.25l-6.18 3.26L7 14.63l-5-4.87 6.91-1L12 2.5z"/></svg></span>
-            <span class="text-[11px] font-bold text-brand-ink">4.8</span>
-          </div>
-        </div>
-
-        <div class="mt-3">
-          <div class="flex items-baseline justify-between gap-1">
-            <span class="text-sm sm:text-base font-black text-brand-ink">₹54,999</span>
-            <span class="text-xs text-slate-400 line-through font-medium">₹73,332</span>
-          </div>
-          <button type="button" class="add-cart quick-add-btn mt-2.5 flex min-h-11 w-full items-center justify-center rounded-xl bg-brand text-xs font-bold text-white hover:bg-brand-dark transition active:scale-[0.98]">
-            Add to Bag
-          </button>
-        </div>
-      </div>
-    </article>
-      </div>
-
-      <!-- Empty State -->
-      <div id="wishlist-empty-state" class="hidden rounded-2xl border border-slate-200/80 bg-white p-12 text-center shadow-sm">
-        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-rose-50 text-rose-500">
-          <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.2 4.6 13a5.2 5.2 0 0 1 0-7.4 5.2 5.2 0 0 1 7.4 0L12 6.6l.4-.4a5.2 5.2 0 0 1 7.4 0 5.2 5.2 0 0 1 0 7.4L12 20.2z"/></svg>
-        </div>
-        <h2 class="mt-4 text-lg font-extrabold text-brand-ink">Your Wishlist is Empty</h2>
-        <p class="mt-1 text-xs sm:text-sm text-slate-500">Explore our catalog and click the heart icon on items you love.</p>
-        <div class="mt-6">
-          <a href="products.html" class="inline-flex min-h-11 items-center gap-2 rounded-xl bg-brand px-6 text-xs sm:text-sm font-bold text-white shadow-sm hover:bg-brand-dark transition">
-            <span>Start Shopping</span>
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
         </div>
       </div>
     </div>
