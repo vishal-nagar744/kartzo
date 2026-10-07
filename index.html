@@ -33,40 +33,7 @@
       }
     };
   </script>
-  <style>
-    html { scroll-behavior: smooth; }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { scrollbar-width: none; }
-    .wish[aria-pressed="true"] { background: #1A56F0; color: #fff; }
-    .wish[aria-pressed="true"] svg { fill: currentColor; }
-    .add-cart[data-added="1"] { background: #059669; }
-    .pad { padding-left: 16px; padding-right: 16px; }
-    @media (min-width: 768px) { .pad { padding-left: 24px; padding-right: 24px; } }
-    @media (min-width: 1280px) { .pad { padding-left: 32px; padding-right: 32px; } }
-    a, button { cursor: pointer; }
-    a:focus-visible, button:focus-visible, input:focus-visible {
-      outline: 2px solid #1A56F0;
-      outline-offset: 2px;
-    }
-    .cat-row { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; }
-    .cat-row > a { width: 4.75rem; flex: none; scroll-snap-align: start; }
-    @media (min-width: 768px) {
-      .cat-row { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; overflow: visible; scroll-snap-type: none; }
-      .cat-row > a { width: auto; }
-    }
-    @media (min-width: 1024px) {
-      .cat-row { grid-template-columns: repeat(10, minmax(0, 1fr)); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/kartzo.css">
 </head>
 <body id="top" class="overflow-x-hidden bg-white font-sans text-brand-ink antialiased">
   <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-bold focus:text-brand">Skip to content</a>
@@ -91,37 +58,37 @@
 
   <header class="sticky top-0 z-50 border-b border-[#e8eef8] bg-white/95 backdrop-blur">
     <div class="pad flex h-[68px] w-full items-center lg:h-[76px]">
-      <a href="#top" class="shrink-0" aria-label="Kartzo home">
+      <a href="index.html" class="shrink-0" aria-label="Kartzo home">
         <img src="assets/logo.webp" alt="Kartzo" width="541" height="168" class="h-8 w-auto sm:h-10">
       </a>
       <nav class="ml-6 hidden h-full items-center gap-1 lg:ml-10 lg:flex" aria-label="Primary">
-        <a data-nav href="#top" class="inline-flex h-full items-center border-b-2 border-brand px-3.5 text-sm font-bold text-brand">Home</a>
-        <a data-nav href="#products" class="inline-flex h-full items-center border-b-2 border-transparent px-3.5 text-sm font-semibold text-[#3c4a66] hover:text-brand">Shop</a>
-        <a data-nav href="#categories" class="inline-flex h-full items-center border-b-2 border-transparent px-3.5 text-sm font-semibold text-[#3c4a66] hover:text-brand">Categories</a>
-        <a data-nav href="#deals" class="inline-flex h-full items-center border-b-2 border-transparent px-3.5 text-sm font-semibold text-[#3c4a66] hover:text-brand">Deals</a>
-        <a data-nav href="#brands" class="inline-flex h-full items-center border-b-2 border-transparent px-3.5 text-sm font-semibold text-[#3c4a66] hover:text-brand">Brands</a>
-        <a data-nav href="#about" class="inline-flex h-full items-center border-b-2 border-transparent px-3.5 text-sm font-semibold text-[#3c4a66] hover:text-brand">About</a>
+        <a href="index.html" class="inline-flex h-full items-center border-b-2 border-brand px-3.5 text-sm font-bold text-brand">Home</a>
+        <a href="products.html" class="inline-flex h-full items-center border-b-2 border-transparent px-3.5 text-sm font-semibold text-[#3c4a66] hover:text-brand">Shop</a>
+        <a href="categories.html" class="inline-flex h-full items-center border-b-2 border-transparent px-3.5 text-sm font-semibold text-[#3c4a66] hover:text-brand">Categories</a>
+        <a href="deals.html" class="inline-flex h-full items-center border-b-2 border-transparent px-3.5 text-sm font-semibold text-[#3c4a66] hover:text-brand">Deals</a>
+        <a href="orders.html" class="inline-flex h-full items-center border-b-2 border-transparent px-3.5 text-sm font-semibold text-[#3c4a66] hover:text-brand">Orders</a>
+        <a href="about.html" class="inline-flex h-full items-center border-b-2 border-transparent px-3.5 text-sm font-semibold text-[#3c4a66] hover:text-brand">About</a>
       </nav>
-      <form class="search-form ml-auto hidden w-full max-w-[440px] items-center pl-6 md:flex" role="search">
+      <form class="search-form ml-auto hidden w-full max-w-[440px] items-center pl-6 md:flex" action="products.html" method="get" role="search">
         <label for="search" class="sr-only">Search for products, brands and more</label>
         <div class="flex w-full items-center rounded-full border border-[#d9e4f7] bg-[#f3f7ff] py-1 pl-4 pr-1">
-          <input id="search" class="search-input w-full bg-transparent text-sm text-brand-ink outline-none placeholder:text-[#93a0b8]" type="search" placeholder="Search for products, brands and more..." autocomplete="off">
+          <input id="search" name="q" class="search-input w-full bg-transparent text-sm text-brand-ink outline-none placeholder:text-[#93a0b8]" type="search" placeholder="Search products, brands..." autocomplete="off">
           <button type="submit" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-white hover:bg-brand-dark" aria-label="Search">
             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
           </button>
         </div>
       </form>
       <div class="ml-auto flex shrink-0 items-center gap-1 sm:gap-2.5 md:ml-4 lg:gap-3">
-        <a href="#products" class="flex min-h-11 min-w-10 flex-col items-center justify-center rounded-xl px-1.5 text-[#3c4a66] transition-colors duration-200 hover:bg-brand-soft sm:min-w-11 sm:px-2" aria-label="Wishlist">
+        <a href="wishlist.html" class="flex min-h-11 min-w-10 flex-col items-center justify-center rounded-xl px-1.5 text-[#3c4a66] transition-colors duration-200 hover:bg-brand-soft sm:min-w-11 sm:px-2" aria-label="Wishlist">
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg>
           <span class="hidden text-[10px] font-bold sm:block">Wishlist</span>
         </a>
-        <a href="#products" class="relative flex min-h-11 min-w-10 flex-col items-center justify-center rounded-xl px-1.5 text-[#3c4a66] transition-colors duration-200 hover:bg-brand-soft sm:min-w-11 sm:px-2" aria-label="Cart, 2 items">
+        <a href="cart.html" class="relative flex min-h-11 min-w-10 flex-col items-center justify-center rounded-xl px-1.5 text-[#3c4a66] transition-colors duration-200 hover:bg-brand-soft sm:min-w-11 sm:px-2" aria-label="Cart, 2 items">
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M3 4h2l2.2 11h11.3l1.8-7H7"/></svg>
           <span id="cart-count" class="absolute right-0.5 top-0 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-brand px-1 text-[10px] font-extrabold text-white">2</span>
           <span class="hidden text-[10px] font-bold sm:block">Cart</span>
         </a>
-        <a href="#about" class="flex min-h-11 min-w-10 flex-col items-center justify-center rounded-xl px-1.5 text-[#3c4a66] transition-colors duration-200 hover:bg-brand-soft sm:min-w-11 sm:px-2" aria-label="Account">
+        <a href="account.html" class="flex min-h-11 min-w-10 flex-col items-center justify-center rounded-xl px-1.5 text-[#3c4a66] transition-colors duration-200 hover:bg-brand-soft sm:min-w-11 sm:px-2" aria-label="Account">
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5 19c1.4-3 3.8-4.5 7-4.5S17.6 16 19 19"/></svg>
           <span class="hidden text-[10px] font-bold sm:block">Account</span>
         </a>
@@ -132,17 +99,17 @@
     </div>
     <div id="mobile-nav" class="hidden border-t border-[#e8eef8] bg-white lg:hidden">
       <nav class="pad flex w-full flex-col gap-1 py-3" aria-label="Mobile">
-        <a data-nav href="#top" class="rounded-lg px-3 py-3 text-sm font-bold text-brand">Home</a>
-        <a data-nav href="#products" class="rounded-lg px-3 py-3 text-sm font-semibold text-[#3c4a66]">Shop</a>
-        <a data-nav href="#categories" class="rounded-lg px-3 py-3 text-sm font-semibold text-[#3c4a66]">Categories</a>
-        <a data-nav href="#deals" class="rounded-lg px-3 py-3 text-sm font-semibold text-[#3c4a66]">Deals</a>
-        <a data-nav href="#brands" class="rounded-lg px-3 py-3 text-sm font-semibold text-[#3c4a66]">Brands</a>
-        <a data-nav href="#about" class="rounded-lg px-3 py-3 text-sm font-semibold text-[#3c4a66]">About</a>
+        <a href="index.html" class="rounded-lg px-3 py-3 text-sm font-bold text-brand">Home</a>
+        <a href="products.html" class="rounded-lg px-3 py-3 text-sm font-semibold text-[#3c4a66]">Shop</a>
+        <a href="categories.html" class="rounded-lg px-3 py-3 text-sm font-semibold text-[#3c4a66]">Categories</a>
+        <a href="deals.html" class="rounded-lg px-3 py-3 text-sm font-semibold text-[#3c4a66]">Deals</a>
+        <a href="orders.html" class="rounded-lg px-3 py-3 text-sm font-semibold text-[#3c4a66]">Orders</a>
+        <a href="about.html" class="rounded-lg px-3 py-3 text-sm font-semibold text-[#3c4a66]">About</a>
       </nav>
-      <form class="search-form pad pb-3" role="search">
+      <form class="search-form pad pb-3" action="products.html" method="get" role="search">
         <label for="search-mobile" class="sr-only">Search for products, brands and more</label>
         <div class="flex items-center rounded-full border border-[#d9e4f7] bg-[#f3f7ff] py-1 pl-4 pr-1">
-          <input id="search-mobile" class="search-input w-full bg-transparent py-2 text-base text-brand-ink outline-none placeholder:text-[#93a0b8]" type="search" placeholder="Search for products, brands and more...">
+          <input id="search-mobile" name="q" class="search-input w-full bg-transparent py-2 text-base text-brand-ink outline-none placeholder:text-[#93a0b8]" type="search" placeholder="Search products, brands...">
           <button type="submit" class="flex h-10 w-10 items-center justify-center rounded-full bg-brand text-white" aria-label="Search">
             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
           </button>
@@ -157,10 +124,10 @@
         <div class="pad py-8 sm:py-10 lg:py-12">
           <p class="inline-flex items-center rounded-full border border-[#c9dbff] bg-white/80 px-3 py-1 text-[11px] font-bold text-brand">New Season • New Deals</p>
           <h1 class="mt-3 text-[2rem] font-extrabold leading-[1.02] tracking-tight text-brand-ink sm:text-5xl lg:text-[3.35rem]">Everything You Need,<br>At <span class="text-brand">Better Prices.</span></h1>
-          <p class="mt-3 max-w-xl text-sm leading-relaxed text-brand-muted sm:text-[15px]">Discover a wide range of high-quality products including electronics, fashion, home essentials, beauty, kitchen, sports and more. Fast delivery, secure payment and amazing deals — all in one place.</p>
+          <p class="mt-3 max-w-md text-sm leading-relaxed text-brand-muted sm:text-[15px]">Quality products at better prices — fast delivery, secure pay, easy returns.</p>
           <div class="mt-5 flex flex-wrap gap-3">
-            <a href="#products" class="inline-flex min-h-11 items-center justify-center rounded-xl bg-brand px-6 text-sm font-bold text-white shadow-[0_8px_20px_rgba(26,86,240,0.28)] hover:bg-brand-dark">Shop Now →</a>
-            <a href="#categories" class="inline-flex min-h-11 items-center justify-center rounded-xl border border-[#c9dbff] bg-white px-6 text-sm font-bold text-brand hover:border-brand">Explore Categories</a>
+            <a href="products.html" class="inline-flex min-h-11 items-center justify-center rounded-xl bg-brand px-6 text-sm font-bold text-white shadow-[0_8px_20px_rgba(26,86,240,0.28)] hover:bg-brand-dark">Shop Now →</a>
+            <a href="categories.html" class="inline-flex min-h-11 items-center justify-center rounded-xl border border-[#c9dbff] bg-white px-6 text-sm font-bold text-brand hover:border-brand">Explore Categories</a>
           </div>
         </div>
         <div class="relative flex min-h-[280px] items-center justify-end sm:min-h-[380px] lg:min-h-[500px]">
@@ -193,46 +160,46 @@
     <section id="categories" class="w-full py-8">
       <div class="pad mb-5 flex items-center justify-between gap-3">
         <h2 class="text-xl font-extrabold tracking-tight sm:text-2xl">Shop by <span class="text-brand">Category</span></h2>
-        <a href="#products" class="shrink-0 text-sm font-bold text-brand hover:underline">View All Categories →</a>
+        <a href="categories.html" class="shrink-0 text-sm font-bold text-brand hover:underline">View All Categories →</a>
       </div>
       <div class="cat-row no-scrollbar pad pb-1">
-        <a href="#products" class="group flex min-w-0 flex-col items-center gap-2">
+        <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/p-headphones.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
           <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Electronics</span>
         </a>
-        <a href="#products" class="group flex min-w-0 flex-col items-center gap-2">
+        <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/c-fashion.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
           <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Fashion</span>
         </a>
-        <a href="#products" class="group flex min-w-0 flex-col items-center gap-2">
+        <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/c-home.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
           <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Home &amp; Living</span>
         </a>
-        <a href="#products" class="group flex min-w-0 flex-col items-center gap-2">
+        <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/p-perfume.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
           <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Beauty</span>
         </a>
-        <a href="#products" class="group flex min-w-0 flex-col items-center gap-2">
+        <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/p-fryer.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
           <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Kitchen</span>
         </a>
-        <a href="#products" class="group flex min-w-0 flex-col items-center gap-2">
+        <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/p-shoes.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
           <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Sports</span>
         </a>
-        <a href="#products" class="group flex min-w-0 flex-col items-center gap-2">
+        <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/c-toys.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
           <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Toys &amp; Games</span>
         </a>
-        <a href="#products" class="group flex min-w-0 flex-col items-center gap-2">
+        <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/p-phone.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
           <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Mobile &amp; Accessories</span>
         </a>
-        <a href="#products" class="group flex min-w-0 flex-col items-center gap-2">
+        <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/p-backpack.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
           <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Bags &amp; Luggage</span>
         </a>
-        <a href="#products" class="group flex min-w-0 flex-col items-center gap-2">
+        <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/c-health.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
           <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Health &amp; Wellness</span>
         </a>
@@ -247,8 +214,8 @@
           <div class="max-w-md text-white">
             <p class="inline-flex rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider">Limited Time Offer</p>
             <h2 class="mt-2 text-[1.65rem] font-extrabold leading-[1.05] tracking-tight sm:text-4xl">Big Deals, Bigger Savings</h2>
-            <p class="mt-2 text-sm text-white/85">Up to 60% OFF on top products. Don't miss out!</p>
-            <a href="#products" class="mt-4 inline-flex min-h-11 items-center rounded-lg bg-white px-5 text-sm font-bold text-brand-dark hover:bg-[#eef4ff]">Shop Deals →</a>
+            <p class="mt-2 text-sm text-white/85">Up to 60% OFF — limited time only.</p>
+            <a href="products.html" class="mt-4 inline-flex min-h-11 items-center rounded-lg bg-white px-5 text-sm font-bold text-brand-dark hover:bg-[#eef4ff]">Shop Deals →</a>
           </div>
           <div class="hidden h-[118px] w-[118px] shrink-0 flex-col items-center justify-center rounded-full bg-[#eef6ff] text-brand shadow-lg sm:flex" aria-hidden="true">
             <span class="text-[11px] font-bold tracking-wide">UP TO</span>
@@ -262,15 +229,15 @@
     <section id="products" class="pad w-full py-8">
       <div class="mb-5 flex items-center justify-between gap-3">
         <h2 class="text-xl font-extrabold tracking-tight sm:text-2xl">Best <span class="text-brand">Sellers</span></h2>
-        <a href="#products" class="text-sm font-bold text-brand hover:underline">View All →</a>
+        <a href="products.html" class="text-sm font-bold text-brand hover:underline">View All →</a>
       </div>
       <p id="search-empty" class="mb-4 hidden rounded-xl bg-brand-soft px-4 py-3 text-sm font-semibold text-brand-dark" role="status"></p>
       <div id="best-grid" class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
         <article class="product relative flex flex-col rounded-2xl border border-[#e6eefb] bg-white p-2.5 shadow-[0_2px_10px_rgba(15,50,120,0.04)] transition duration-200 hover:border-[#b9d0ff] hover:shadow-card" data-name="wireless headphones bluetooth">
           <span class="absolute left-2.5 top-2.5 z-10 rounded-md bg-[#ef3b3b] px-1.5 py-0.5 text-[10px] font-extrabold text-white">-30%</span>
           <button type="button" class="wish absolute right-2 top-2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand shadow-md" aria-pressed="false" aria-label="Add Wireless Headphones to wishlist"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg></button>
-          <div class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-headphones.webp" alt="Wireless Headphones" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></div>
-          <h3 class="mt-1 text-[13px] font-bold leading-tight">Wireless Headphones</h3>
+          <a href="product.html" class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-headphones.webp" alt="Wireless Headphones" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></a>
+          <h3 class="mt-1 text-[13px] font-bold leading-tight"><a href="product.html" class="hover:text-brand">Wireless Headphones</a></h3>
           <p class="text-[11px] text-[#7d8aa3]">Bluetooth 5.3</p>
           <p class="mt-1 text-[11px] text-[#8b97ad]"><span class="text-amber-400" aria-hidden="true">★★★★★</span> <span class="sr-only">Rated 4.8 out of 5.</span>4.8 (2.1K)</p>
           <p class="mt-1 flex items-baseline justify-between"><span class="text-[15px] font-extrabold">₹2,799</span><span class="text-[11px] text-[#a8b1c2] line-through">₹3,999</span></p>
@@ -279,7 +246,7 @@
         <article class="product relative flex flex-col rounded-2xl border border-[#e6eefb] bg-white p-2.5 shadow-[0_2px_10px_rgba(15,50,120,0.04)] transition duration-200 hover:border-[#b9d0ff] hover:shadow-card" data-name="smart watch amoled">
           <span class="absolute left-2.5 top-2.5 z-10 rounded-md bg-[#ef3b3b] px-1.5 py-0.5 text-[10px] font-extrabold text-white">-40%</span>
           <button type="button" class="wish absolute right-2 top-2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand shadow-md" aria-pressed="false" aria-label="Add Smart Watch to wishlist"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg></button>
-          <div class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-watch.webp" alt="Smart Watch" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></div>
+          <a href="product.html" class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-watch.webp" alt="Smart Watch" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></a>
           <h3 class="mt-1 text-[13px] font-bold leading-tight">Smart Watch</h3>
           <p class="text-[11px] text-[#7d8aa3]">with AMOLED Display</p>
           <p class="mt-1 text-[11px] text-[#8b97ad]"><span class="text-amber-400" aria-hidden="true">★★★★★</span> <span class="sr-only">Rated 4.6 out of 5.</span>4.6 (1.8K)</p>
@@ -289,7 +256,7 @@
         <article class="product relative flex flex-col rounded-2xl border border-[#e6eefb] bg-white p-2.5 shadow-[0_2px_10px_rgba(15,50,120,0.04)] transition duration-200 hover:border-[#b9d0ff] hover:shadow-card" data-name="mens running shoes">
           <span class="absolute left-2.5 top-2.5 z-10 rounded-md bg-[#ef3b3b] px-1.5 py-0.5 text-[10px] font-extrabold text-white">-40%</span>
           <button type="button" class="wish absolute right-2 top-2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand shadow-md" aria-pressed="false" aria-label="Add Men's Running Shoes to wishlist"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg></button>
-          <div class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-shoes.webp" alt="Men's Running Shoes" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></div>
+          <a href="product.html" class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-shoes.webp" alt="Men's Running Shoes" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></a>
           <h3 class="mt-1 text-[13px] font-bold leading-tight">Men's Running Shoes</h3>
           <p class="text-[11px] text-[#7d8aa3]">Comfort &amp; Style</p>
           <p class="mt-1 text-[11px] text-[#8b97ad]"><span class="text-amber-400" aria-hidden="true">★★★★★</span> <span class="sr-only">Rated 4.7 out of 5.</span>4.7 (2.6K)</p>
@@ -299,7 +266,7 @@
         <article class="product relative flex flex-col rounded-2xl border border-[#e6eefb] bg-white p-2.5 shadow-[0_2px_10px_rgba(15,50,120,0.04)] transition duration-200 hover:border-[#b9d0ff] hover:shadow-card" data-name="smartphone 128gb">
           <span class="absolute left-2.5 top-2.5 z-10 rounded-md bg-[#ef3b3b] px-1.5 py-0.5 text-[10px] font-extrabold text-white">-25%</span>
           <button type="button" class="wish absolute right-2 top-2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand shadow-md" aria-pressed="false" aria-label="Add Smartphone 128GB to wishlist"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg></button>
-          <div class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-phone.webp" alt="Smartphone 128GB" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></div>
+          <a href="product.html" class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-phone.webp" alt="Smartphone 128GB" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></a>
           <h3 class="mt-1 text-[13px] font-bold leading-tight">Smartphone 128GB</h3>
           <p class="text-[11px] text-[#7d8aa3]">Super Retina Display</p>
           <p class="mt-1 text-[11px] text-[#8b97ad]"><span class="text-amber-400" aria-hidden="true">★★★★★</span> <span class="sr-only">Rated 4.8 out of 5.</span>4.8 (4.1K)</p>
@@ -309,7 +276,7 @@
         <article class="product relative flex flex-col rounded-2xl border border-[#e6eefb] bg-white p-2.5 shadow-[0_2px_10px_rgba(15,50,120,0.04)] transition duration-200 hover:border-[#b9d0ff] hover:shadow-card" data-name="air fryer 5l">
           <span class="absolute left-2.5 top-2.5 z-10 rounded-md bg-[#ef3b3b] px-1.5 py-0.5 text-[10px] font-extrabold text-white">-25%</span>
           <button type="button" class="wish absolute right-2 top-2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand shadow-md" aria-pressed="false" aria-label="Add Air Fryer 5L to wishlist"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg></button>
-          <div class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-fryer.webp" alt="Air Fryer 5L" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></div>
+          <a href="product.html" class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-fryer.webp" alt="Air Fryer 5L" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></a>
           <h3 class="mt-1 text-[13px] font-bold leading-tight">Air Fryer 5L</h3>
           <p class="text-[11px] text-[#7d8aa3]">Healthy Cooking</p>
           <p class="mt-1 text-[11px] text-[#8b97ad]"><span class="text-amber-400" aria-hidden="true">★★★★☆</span> <span class="sr-only">Rated 4.5 out of 5.</span>4.5 (1.3K)</p>
@@ -319,7 +286,7 @@
         <article class="product relative flex flex-col rounded-2xl border border-[#e6eefb] bg-white p-2.5 shadow-[0_2px_10px_rgba(15,50,120,0.04)] transition duration-200 hover:border-[#b9d0ff] hover:shadow-card" data-name="laptop backpack">
           <span class="absolute left-2.5 top-2.5 z-10 rounded-md bg-[#ef3b3b] px-1.5 py-0.5 text-[10px] font-extrabold text-white">-30%</span>
           <button type="button" class="wish absolute right-2 top-2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand shadow-md" aria-pressed="false" aria-label="Add Laptop Backpack to wishlist"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg></button>
-          <div class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-backpack.webp" alt="Laptop Backpack" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></div>
+          <a href="product.html" class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-backpack.webp" alt="Laptop Backpack" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></a>
           <h3 class="mt-1 text-[13px] font-bold leading-tight">Laptop Backpack</h3>
           <p class="text-[11px] text-[#7d8aa3]">Water Resistant</p>
           <p class="mt-1 text-[11px] text-[#8b97ad]"><span class="text-amber-400" aria-hidden="true">★★★★★</span> <span class="sr-only">Rated 4.6 out of 5.</span>4.6 (2.5K)</p>
@@ -355,7 +322,7 @@
         <div class="relative z-10 flex h-full max-w-[58%] flex-col justify-center p-4 text-white sm:max-w-xs sm:p-7">
           <p class="text-[10px] font-bold uppercase tracking-wide text-white/80 sm:text-xs">Electronics Sale</p>
           <h2 class="mt-1 text-xl font-extrabold leading-tight sm:text-3xl">Top Brands<br>Up to 50% OFF</h2>
-          <a href="#products" class="mt-3 inline-flex min-h-11 w-fit items-center rounded-lg bg-white px-4 text-sm font-bold text-brand-dark hover:bg-[#eef4ff]">Shop Electronics →</a>
+          <a href="products.html" class="mt-3 inline-flex min-h-11 w-fit items-center rounded-lg bg-white px-4 text-sm font-bold text-brand-dark hover:bg-[#eef4ff]">Shop Electronics →</a>
         </div>
       </article>
       <article class="grid aspect-[1.9/1] grid-cols-[46%_54%] overflow-hidden rounded-[22px] bg-[#f4eadf] sm:aspect-[2.05/1] lg:col-span-2 lg:aspect-auto lg:h-full">
@@ -363,7 +330,7 @@
           <p class="text-[10px] font-bold uppercase tracking-wide text-[#b5813d] sm:text-xs">Home &amp; Living</p>
           <h2 class="mt-1 text-xl font-extrabold leading-tight text-brand-ink sm:text-2xl">Make It<br>Yours</h2>
           <p class="mt-1.5 hidden text-xs leading-relaxed text-brand-muted sm:block">Stylish, comfortable and modern products for your home.</p>
-          <a href="#new-arrivals" class="mt-3 inline-flex min-h-11 w-fit items-center rounded-lg bg-brand-ink px-3.5 text-sm font-bold text-white hover:bg-black">Shop Home →</a>
+          <a href="products.html" class="mt-3 inline-flex min-h-11 w-fit items-center rounded-lg bg-brand-ink px-3.5 text-sm font-bold text-white hover:bg-black">Shop Home →</a>
         </div>
         <div class="relative h-full min-h-0 overflow-hidden">
           <img src="assets/home.webp" alt="Blue sofa in a bright living room" width="1912" height="706" class="absolute inset-0 h-full w-full object-cover object-[88%_center]" loading="lazy">
@@ -374,13 +341,13 @@
     <section id="new-arrivals" class="pad w-full py-8">
       <div class="mb-5 flex items-center justify-between gap-3">
         <h2 class="text-xl font-extrabold tracking-tight sm:text-2xl">New <span class="text-brand">Arrivals</span></h2>
-        <a href="#new-arrivals" class="text-sm font-bold text-brand hover:underline">View All →</a>
+        <a href="products.html" class="text-sm font-bold text-brand hover:underline">View All →</a>
       </div>
       <div id="new-grid" class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
         <article class="product relative flex flex-col rounded-2xl border border-[#e6eefb] bg-white p-2.5 shadow-[0_2px_10px_rgba(15,50,120,0.04)] transition duration-200 hover:border-[#b9d0ff] hover:shadow-card" data-name="tws earbuds noise cancellation">
           <span class="absolute left-2.5 top-2.5 z-10 rounded-md bg-brand px-1.5 py-0.5 text-[10px] font-extrabold text-white">New</span>
           <button type="button" class="wish absolute right-2 top-2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand shadow-md" aria-pressed="false" aria-label="Add TWS Earbuds to wishlist"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg></button>
-          <div class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-earbuds.webp" alt="TWS Earbuds" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></div>
+          <a href="product.html" class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-earbuds.webp" alt="TWS Earbuds" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></a>
           <h3 class="mt-1 text-[13px] font-bold leading-tight">TWS Earbuds</h3>
           <p class="text-[11px] text-[#7d8aa3]">Noise Cancellation</p>
           <p class="mt-1 text-[11px] text-[#8b97ad]"><span class="text-amber-400" aria-hidden="true">★★★★★</span> <span class="sr-only">Rated 4.7 out of 5.</span>4.7 (1.5K)</p>
@@ -390,7 +357,7 @@
         <article class="product relative flex flex-col rounded-2xl border border-[#e6eefb] bg-white p-2.5 shadow-[0_2px_10px_rgba(15,50,120,0.04)] transition duration-200 hover:border-[#b9d0ff] hover:shadow-card" data-name="premium perfume">
           <span class="absolute left-2.5 top-2.5 z-10 rounded-md bg-brand px-1.5 py-0.5 text-[10px] font-extrabold text-white">New</span>
           <button type="button" class="wish absolute right-2 top-2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand shadow-md" aria-pressed="false" aria-label="Add Premium Perfume to wishlist"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg></button>
-          <div class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-perfume.webp" alt="Premium Perfume" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></div>
+          <a href="product.html" class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-perfume.webp" alt="Premium Perfume" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></a>
           <h3 class="mt-1 text-[13px] font-bold leading-tight">Premium Perfume</h3>
           <p class="text-[11px] text-[#7d8aa3]">Long Lasting</p>
           <p class="mt-1 text-[11px] text-[#8b97ad]"><span class="text-amber-400" aria-hidden="true">★★★★☆</span> <span class="sr-only">Rated 4.5 out of 5.</span>4.5 (1.3K)</p>
@@ -400,7 +367,7 @@
         <article class="product relative flex flex-col rounded-2xl border border-[#e6eefb] bg-white p-2.5 shadow-[0_2px_10px_rgba(15,50,120,0.04)] transition duration-200 hover:border-[#b9d0ff] hover:shadow-card" data-name="portable blender">
           <span class="absolute left-2.5 top-2.5 z-10 rounded-md bg-brand px-1.5 py-0.5 text-[10px] font-extrabold text-white">New</span>
           <button type="button" class="wish absolute right-2 top-2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand shadow-md" aria-pressed="false" aria-label="Add Portable Blender to wishlist"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg></button>
-          <div class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-blender.webp" alt="Portable Blender" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></div>
+          <a href="product.html" class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-blender.webp" alt="Portable Blender" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></a>
           <h3 class="mt-1 text-[13px] font-bold leading-tight">Portable Blender</h3>
           <p class="text-[11px] text-[#7d8aa3]">USB Rechargeable</p>
           <p class="mt-1 text-[11px] text-[#8b97ad]"><span class="text-amber-400" aria-hidden="true">★★★★★</span> <span class="sr-only">Rated 4.6 out of 5.</span>4.6 (982)</p>
@@ -410,7 +377,7 @@
         <article class="product relative flex flex-col rounded-2xl border border-[#e6eefb] bg-white p-2.5 shadow-[0_2px_10px_rgba(15,50,120,0.04)] transition duration-200 hover:border-[#b9d0ff] hover:shadow-card" data-name="uv sunglasses">
           <span class="absolute left-2.5 top-2.5 z-10 rounded-md bg-brand px-1.5 py-0.5 text-[10px] font-extrabold text-white">New</span>
           <button type="button" class="wish absolute right-2 top-2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand shadow-md" aria-pressed="false" aria-label="Add UV Sunglasses to wishlist"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg></button>
-          <div class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-sunglasses.webp" alt="UV Sunglasses" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></div>
+          <a href="product.html" class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-sunglasses.webp" alt="UV Sunglasses" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></a>
           <h3 class="mt-1 text-[13px] font-bold leading-tight">UV Sunglasses</h3>
           <p class="text-[11px] text-[#7d8aa3]">Stylish &amp; Comfortable</p>
           <p class="mt-1 text-[11px] text-[#8b97ad]"><span class="text-amber-400" aria-hidden="true">★★★★☆</span> <span class="sr-only">Rated 4.4 out of 5.</span>4.4 (654)</p>
@@ -420,7 +387,7 @@
         <article class="product relative flex flex-col rounded-2xl border border-[#e6eefb] bg-white p-2.5 shadow-[0_2px_10px_rgba(15,50,120,0.04)] transition duration-200 hover:border-[#b9d0ff] hover:shadow-card" data-name="travel luggage">
           <span class="absolute left-2.5 top-2.5 z-10 rounded-md bg-brand px-1.5 py-0.5 text-[10px] font-extrabold text-white">New</span>
           <button type="button" class="wish absolute right-2 top-2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand shadow-md" aria-pressed="false" aria-label="Add Travel Luggage to wishlist"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg></button>
-          <div class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-luggage.webp" alt="Travel Luggage" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></div>
+          <a href="product.html" class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-luggage.webp" alt="Travel Luggage" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></a>
           <h3 class="mt-1 text-[13px] font-bold leading-tight">Travel Luggage</h3>
           <p class="text-[11px] text-[#7d8aa3]">Durable &amp; Light</p>
           <p class="mt-1 text-[11px] text-[#8b97ad]"><span class="text-amber-400" aria-hidden="true">★★★★★</span> <span class="sr-only">Rated 4.6 out of 5.</span>4.6 (1.1K)</p>
@@ -430,7 +397,7 @@
         <article class="product relative flex flex-col rounded-2xl border border-[#e6eefb] bg-white p-2.5 shadow-[0_2px_10px_rgba(15,50,120,0.04)] transition duration-200 hover:border-[#b9d0ff] hover:shadow-card" data-name="gaming chair">
           <span class="absolute left-2.5 top-2.5 z-10 rounded-md bg-brand px-1.5 py-0.5 text-[10px] font-extrabold text-white">New</span>
           <button type="button" class="wish absolute right-2 top-2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand shadow-md" aria-pressed="false" aria-label="Add Gaming Chair to wishlist"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4.6-7 9-7 9z"/></svg></button>
-          <div class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-chair.webp" alt="Gaming Chair" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></div>
+          <a href="product.html" class="flex h-28 items-center justify-center sm:h-32"><img src="assets/p-chair.webp" alt="Gaming Chair" width="800" height="800" class="h-24 w-auto object-contain" loading="lazy"></a>
           <h3 class="mt-1 text-[13px] font-bold leading-tight">Gaming Chair</h3>
           <p class="text-[11px] text-[#7d8aa3]">Ergonomic Design</p>
           <p class="mt-1 text-[11px] text-[#8b97ad]"><span class="text-amber-400" aria-hidden="true">★★★★★</span> <span class="sr-only">Rated 4.8 out of 5.</span>4.8 (765)</p>
@@ -443,7 +410,7 @@
     <section id="brands" class="pad w-full pb-2">
       <div class="mb-5 flex items-center justify-between gap-3">
         <h2 class="text-xl font-extrabold tracking-tight sm:text-2xl">Shop Top <span class="text-brand">Brands</span></h2>
-        <a href="#brands" class="text-sm font-bold text-brand hover:underline">View All →</a>
+        <a href="products.html" class="text-sm font-bold text-brand hover:underline">View All →</a>
       </div>
       <ul class="no-scrollbar flex items-center gap-8 overflow-x-auto py-3 sm:justify-between sm:gap-6">
         <li class="flex h-8 shrink-0 items-center text-[#111]" aria-label="Apple"><svg class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg></li>
@@ -536,7 +503,7 @@
         <img src="assets/app.webp" alt="Kartzo app open on three phones" width="1536" height="1024" class="mx-auto w-full max-w-md" loading="lazy">
         <div>
           <h2 class="text-2xl font-extrabold leading-tight tracking-tight sm:text-3xl">Shop on the Go<br>With the Kartzo App</h2>
-          <p class="mt-2 text-sm text-brand-muted">Faster, smoother and more personalized shopping experience.</p>
+          <p class="mt-2 text-sm text-brand-muted">Faster checkout, tracking &amp; app-only deals.</p>
           <div class="mt-4 flex flex-wrap items-center gap-3">
             <div class="rounded-xl bg-white p-2 shadow-sm" aria-hidden="true">
               <svg width="72" height="72" viewBox="0 0 72 72" class="h-[72px] w-[72px]">
@@ -594,7 +561,7 @@
     <section id="blog" class="pad w-full pb-8">
       <div class="mb-4 flex items-center justify-between gap-3">
         <h2 class="text-xl font-extrabold tracking-tight sm:text-2xl">Latest from <span class="text-brand">Our Blog</span></h2>
-        <a href="#blog" class="text-sm font-bold text-brand hover:underline">View All →</a>
+        <a href="about.html" class="text-sm font-bold text-brand hover:underline">View All →</a>
       </div>
       <div class="grid gap-4 md:grid-cols-3">
         <article class="overflow-hidden rounded-2xl border border-[#e6eefb] bg-white shadow-[0_2px_10px_rgba(15,50,120,0.04)] transition duration-200 hover:shadow-card">
@@ -603,7 +570,7 @@
             <p class="text-[11px] font-bold text-brand">Shopping Tips</p>
             <h3 class="mt-1 text-base font-extrabold">5 Tips for Smart Online Shopping</h3>
             <p class="mt-1 text-sm leading-relaxed text-brand-muted">Make the most of online shopping with these simple tips.</p>
-            <a href="#blog" class="mt-3 inline-flex text-sm font-bold text-brand">Read More →</a>
+            <a href="about.html" class="mt-3 inline-flex text-sm font-bold text-brand">Read More →</a>
           </div>
         </article>
         <article class="overflow-hidden rounded-2xl border border-[#e6eefb] bg-white shadow-[0_2px_10px_rgba(15,50,120,0.04)] transition duration-200 hover:shadow-card">
@@ -612,7 +579,7 @@
             <p class="text-[11px] font-bold text-brand">Product Guide</p>
             <h3 class="mt-1 text-base font-extrabold">Best Gadgets for 2026</h3>
             <p class="mt-1 text-sm leading-relaxed text-brand-muted">Explore the latest gadgets you shouldn't miss this year.</p>
-            <a href="#blog" class="mt-3 inline-flex text-sm font-bold text-brand">Read More →</a>
+            <a href="about.html" class="mt-3 inline-flex text-sm font-bold text-brand">Read More →</a>
           </div>
         </article>
         <article class="overflow-hidden rounded-2xl border border-[#e6eefb] bg-white shadow-[0_2px_10px_rgba(15,50,120,0.04)] transition duration-200 hover:shadow-card">
@@ -621,7 +588,7 @@
             <p class="text-[11px] font-bold text-brand">Home Decor</p>
             <h3 class="mt-1 text-base font-extrabold">Transform Your Home on a Budget</h3>
             <p class="mt-1 text-sm leading-relaxed text-brand-muted">Stylish home essentials to upgrade your space.</p>
-            <a href="#blog" class="mt-3 inline-flex text-sm font-bold text-brand">Read More →</a>
+            <a href="about.html" class="mt-3 inline-flex text-sm font-bold text-brand">Read More →</a>
           </div>
         </article>
       </div>
@@ -635,7 +602,7 @@
           </span>
           <div>
             <h2 class="text-lg font-extrabold">Stay Updated</h2>
-            <p class="text-sm text-white/75">Subscribe to get exclusive offers, new arrivals and more.</p>
+            <p class="text-sm text-white/75">Exclusive offers &amp; new arrivals.</p>
           </div>
         </div>
         <form id="newsletter-form" class="lg:ml-auto" novalidate>
@@ -654,34 +621,34 @@
     <div class="pad mx-auto grid w-full gap-8 py-10 md:grid-cols-2 lg:grid-cols-4">
       <div>
         <img src="assets/logo.webp" alt="Kartzo" width="541" height="168" class="h-10 w-auto">
-        <p class="mt-3 max-w-xs text-sm leading-relaxed text-brand-muted">Your one-stop destination for everything you love. Quality products, great prices and a better shopping experience.</p>
+        <p class="mt-3 max-w-xs text-sm leading-relaxed text-brand-muted">Quality products, better prices, faster delivery.</p>
         <ul class="mt-4 flex gap-2">
-          <li><a href="#top" class="flex h-11 w-11 items-center justify-center rounded-lg bg-[#f3f7ff] text-brand hover:bg-brand hover:text-white" aria-label="Facebook"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z"/></svg></a></li>
-          <li><a href="#top" class="flex h-11 w-11 items-center justify-center rounded-lg bg-[#f3f7ff] text-brand hover:bg-brand hover:text-white" aria-label="Instagram"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg></a></li>
-          <li><a href="#top" class="flex h-11 w-11 items-center justify-center rounded-lg bg-[#f3f7ff] text-brand hover:bg-brand hover:text-white" aria-label="YouTube"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.2s0-3.2-.4-4.6c-.2-.8-.9-1.5-1.7-1.7C18.4 5.5 12 5.5 12 5.5s-6.4 0-7.9.4c-.8.2-1.5.9-1.7 1.7C2 9 2 12.2 2 12.2s0 3.2.4 4.6c.2.8.9 1.5 1.7 1.7 1.5.4 7.9.4 7.9.4s6.4 0 7.9-.4c.8-.2 1.5-.9 1.7-1.7.4-1.4.4-4.6.4-4.6zM10 15.5v-6.6l6 3.3-6 3.3z"/></svg></a></li>
-          <li><a href="#top" class="flex h-11 w-11 items-center justify-center rounded-lg bg-[#f3f7ff] text-brand hover:bg-brand hover:text-white" aria-label="X"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3.1l-6.8 7.8L22 21h-6.2l-4.8-6.3L5.7 21H2.6l7.3-8.4L2 3h6.3l4.4 5.8L17.5 3zm-1.1 16.2h1.7L7.7 4.7H5.9l10.5 14.5z"/></svg></a></li>
-          <li><a href="#top" class="flex h-11 w-11 items-center justify-center rounded-lg bg-[#f3f7ff] text-brand hover:bg-brand hover:text-white" aria-label="Pinterest"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.1 2.5 7.6 6.1 9.1-.1-.8-.2-2 0-2.8.2-.8 1.3-5.4 1.3-5.4s-.3-.7-.3-1.6c0-1.5.9-2.6 2-2.6.9 0 1.4.7 1.4 1.5 0 .9-.6 2.3-.9 3.6-.3 1.1.5 1.9 1.6 1.9 1.9 0 3.2-2.4 3.2-5.3 0-2.2-1.5-3.8-4.2-3.8-3.1 0-5 2.3-5 4.8 0 .9.3 1.6.7 2.1.1.1.1.2.1.3l-.3 1.1c0 .2-.2.3-.4.2-1.2-.5-1.8-1.9-1.8-3.5 0-2.6 2.2-5.8 6.6-5.8 3.5 0 5.8 2.5 5.8 5.2 0 3.6-2 6.2-4.9 6.2-1 0-1.9-.5-2.2-1.1l-.6 2.3c-.2.8-.7 1.7-1.1 2.3.9.3 1.9.4 2.9.4 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg></a></li>
+          <li><a href="index.html" class="flex h-11 w-11 items-center justify-center rounded-lg bg-[#f3f7ff] text-brand hover:bg-brand hover:text-white" aria-label="Facebook"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z"/></svg></a></li>
+          <li><a href="index.html" class="flex h-11 w-11 items-center justify-center rounded-lg bg-[#f3f7ff] text-brand hover:bg-brand hover:text-white" aria-label="Instagram"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg></a></li>
+          <li><a href="index.html" class="flex h-11 w-11 items-center justify-center rounded-lg bg-[#f3f7ff] text-brand hover:bg-brand hover:text-white" aria-label="YouTube"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.2s0-3.2-.4-4.6c-.2-.8-.9-1.5-1.7-1.7C18.4 5.5 12 5.5 12 5.5s-6.4 0-7.9.4c-.8.2-1.5.9-1.7 1.7C2 9 2 12.2 2 12.2s0 3.2.4 4.6c.2.8.9 1.5 1.7 1.7 1.5.4 7.9.4 7.9.4s6.4 0 7.9-.4c.8-.2 1.5-.9 1.7-1.7.4-1.4.4-4.6.4-4.6zM10 15.5v-6.6l6 3.3-6 3.3z"/></svg></a></li>
+          <li><a href="index.html" class="flex h-11 w-11 items-center justify-center rounded-lg bg-[#f3f7ff] text-brand hover:bg-brand hover:text-white" aria-label="X"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3.1l-6.8 7.8L22 21h-6.2l-4.8-6.3L5.7 21H2.6l7.3-8.4L2 3h6.3l4.4 5.8L17.5 3zm-1.1 16.2h1.7L7.7 4.7H5.9l10.5 14.5z"/></svg></a></li>
+          <li><a href="index.html" class="flex h-11 w-11 items-center justify-center rounded-lg bg-[#f3f7ff] text-brand hover:bg-brand hover:text-white" aria-label="Pinterest"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.1 2.5 7.6 6.1 9.1-.1-.8-.2-2 0-2.8.2-.8 1.3-5.4 1.3-5.4s-.3-.7-.3-1.6c0-1.5.9-2.6 2-2.6.9 0 1.4.7 1.4 1.5 0 .9-.6 2.3-.9 3.6-.3 1.1.5 1.9 1.6 1.9 1.9 0 3.2-2.4 3.2-5.3 0-2.2-1.5-3.8-4.2-3.8-3.1 0-5 2.3-5 4.8 0 .9.3 1.6.7 2.1.1.1.1.2.1.3l-.3 1.1c0 .2-.2.3-.4.2-1.2-.5-1.8-1.9-1.8-3.5 0-2.6 2.2-5.8 6.6-5.8 3.5 0 5.8 2.5 5.8 5.2 0 3.6-2 6.2-4.9 6.2-1 0-1.9-.5-2.2-1.1l-.6 2.3c-.2.8-.7 1.7-1.1 2.3.9.3 1.9.4 2.9.4 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg></a></li>
         </ul>
       </div>
       <div>
         <h2 class="text-sm font-extrabold">Quick Links</h2>
         <ul class="mt-3 space-y-2 text-sm text-brand-muted">
-          <li><a class="hover:text-brand" href="#top">Home</a></li>
-          <li><a class="hover:text-brand" href="#products">Shop</a></li>
-          <li><a class="hover:text-brand" href="#categories">Categories</a></li>
-          <li><a class="hover:text-brand" href="#deals">Deals</a></li>
-          <li><a class="hover:text-brand" href="#brands">Brands</a></li>
-          <li><a class="hover:text-brand" href="#about">About Us</a></li>
+          <li><a class="hover:text-brand" href="index.html">Home</a></li>
+          <li><a class="hover:text-brand" href="products.html">Shop</a></li>
+          <li><a class="hover:text-brand" href="categories.html">Categories</a></li>
+          <li><a class="hover:text-brand" href="deals.html">Deals</a></li>
+          <li><a class="hover:text-brand" href="orders.html">Orders</a></li>
+          <li><a class="hover:text-brand" href="about.html">About Us</a></li>
         </ul>
       </div>
       <div>
         <h2 class="text-sm font-extrabold">Customer Service</h2>
         <ul class="mt-3 space-y-2 text-sm text-brand-muted">
-          <li><a class="hover:text-brand" href="#about">Track Order</a></li>
-          <li><a class="hover:text-brand" href="#about">Returns &amp; Refunds</a></li>
-          <li><a class="hover:text-brand" href="#about">Shipping Policy</a></li>
-          <li><a class="hover:text-brand" href="#about">Privacy Policy</a></li>
-          <li><a class="hover:text-brand" href="#about">Terms &amp; Conditions</a></li>
+          <li><a class="hover:text-brand" href="orders.html">Track Order</a></li>
+          <li><a class="hover:text-brand" href="wishlist.html">Wishlist</a></li>
+          <li><a class="hover:text-brand" href="cart.html">Cart</a></li>
+          <li><a class="hover:text-brand" href="account.html">Account</a></li>
+          <li><a class="hover:text-brand" href="about.html#contact">Contact</a></li>
         </ul>
       </div>
       <div>
@@ -696,94 +663,14 @@
     <div class="border-t border-[#e8eef8]">
       <div class="pad mx-auto flex w-full flex-col gap-2 py-4 text-xs text-[#7d8aa3] sm:flex-row sm:items-center sm:justify-between">
         <p>© 2026 Kartzo. All rights reserved.</p>
-        <p class="flex gap-3"><a class="hover:text-brand" href="#about">Privacy</a><a class="hover:text-brand" href="#about">Terms</a><a class="hover:text-brand" href="#about">Sitemap</a></p>
+        <p class="flex gap-3"><a class="hover:text-brand" href="about.html">Privacy</a><a class="hover:text-brand" href="about.html">Terms</a><a class="hover:text-brand" href="about.html">Sitemap</a></p>
       </div>
     </div>
   </footer>
 
+  <script src="assets/kartzo.js"></script>
   <script>
     (function () {
-      var cartCount = 2;
-      var cartEl = document.getElementById("cart-count");
-      var cartLink = cartEl.closest("a");
-
-      function setCart(count) {
-        cartCount = count;
-        cartEl.textContent = String(count);
-        cartLink.setAttribute("aria-label", "Cart, " + count + (count === 1 ? " item" : " items"));
-      }
-
-      document.querySelectorAll(".add-cart").forEach(function (button) {
-        button.addEventListener("click", function () {
-          if (button.getAttribute("data-added") === "1") return;
-          button.setAttribute("data-added", "1");
-          button.textContent = "Added";
-          setCart(cartCount + 1);
-          window.setTimeout(function () {
-            button.setAttribute("data-added", "0");
-            button.textContent = "Add to Cart";
-          }, 1200);
-        });
-      });
-
-      document.querySelectorAll(".wish").forEach(function (button) {
-        button.addEventListener("click", function () {
-          var on = button.getAttribute("aria-pressed") === "true";
-          button.setAttribute("aria-pressed", on ? "false" : "true");
-        });
-      });
-
-      var menuBtn = document.getElementById("menu-btn");
-      var mobileNav = document.getElementById("mobile-nav");
-      menuBtn.addEventListener("click", function () {
-        var open = mobileNav.classList.toggle("hidden") === false;
-        menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
-        menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-      });
-      mobileNav.querySelectorAll("a").forEach(function (link) {
-        link.addEventListener("click", function () {
-          mobileNav.classList.add("hidden");
-          menuBtn.setAttribute("aria-expanded", "false");
-          menuBtn.setAttribute("aria-label", "Open menu");
-        });
-      });
-
-      var inputs = Array.prototype.slice.call(document.querySelectorAll(".search-input"));
-      var empty = document.getElementById("search-empty");
-      function filterProducts(query) {
-        var q = query.trim().toLowerCase();
-        var shown = 0;
-        document.querySelectorAll(".product").forEach(function (card) {
-          var match = !q || (card.getAttribute("data-name") || "").indexOf(q) !== -1;
-          card.classList.toggle("hidden", !match);
-          if (match) shown += 1;
-        });
-        if (!q || shown > 0) {
-          empty.textContent = "";
-          empty.classList.add("hidden");
-        } else {
-          empty.textContent = "No products match \u201c" + query.trim() + "\u201d.";
-          empty.classList.remove("hidden");
-        }
-      }
-      inputs.forEach(function (input) {
-        input.addEventListener("input", function () {
-          inputs.forEach(function (other) {
-            if (other !== input) other.value = input.value;
-          });
-          filterProducts(input.value);
-        });
-      });
-      document.querySelectorAll(".search-form").forEach(function (form) {
-        form.addEventListener("submit", function (event) {
-          event.preventDefault();
-          var field = form.querySelector(".search-input");
-          filterProducts(field.value);
-          var target = document.getElementById("products");
-          if (target) target.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
-        });
-      });
-
       var reviews = document.getElementById("reviews");
       document.getElementById("reviews-next").addEventListener("click", function () {
         var first = reviews.querySelector("article");
@@ -793,47 +680,6 @@
         var cards = reviews.querySelectorAll("article");
         if (cards.length) reviews.insertBefore(cards[cards.length - 1], cards[0]);
       });
-
-      var form = document.getElementById("newsletter-form");
-      var email = document.getElementById("newsletter-email");
-      var message = document.getElementById("newsletter-msg");
-      form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        var value = email.value.trim();
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-          message.textContent = "Enter a valid email address.";
-          message.className = "mt-2 text-xs font-semibold text-amber-300";
-          email.setAttribute("aria-invalid", "true");
-          email.focus();
-          return;
-        }
-        email.setAttribute("aria-invalid", "false");
-        message.textContent = "You are subscribed. Watch your inbox for deals.";
-        message.className = "mt-2 text-xs font-semibold text-white";
-        email.value = "";
-      });
-
-      var sectionIds = ["products", "categories", "deals", "brands", "about"];
-      var navLinks = document.querySelectorAll("[data-nav]");
-      function setActiveNav() {
-        var current = "";
-        sectionIds.forEach(function (id) {
-          var el = document.getElementById(id);
-          if (el && window.scrollY >= el.offsetTop - 140) current = id;
-        });
-        navLinks.forEach(function (link) {
-          var href = link.getAttribute("href");
-          var on = current ? href === "#" + current : href === "#top";
-          var primary = link.parentElement && link.parentElement.getAttribute("aria-label") === "Primary";
-          link.classList.toggle("text-brand", on);
-          if (primary) {
-            link.classList.toggle("border-brand", on);
-            link.classList.toggle("border-transparent", !on);
-            link.classList.toggle("text-[#3c4a66]", !on);
-          }
-        });
-      }
-      window.addEventListener("scroll", setActiveNav, { passive: true });
     })();
   </script>
 </body>
