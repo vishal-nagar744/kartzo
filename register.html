@@ -58,8 +58,8 @@
   </div>
 
 
-  <header class="sticky top-0 z-50 border-b border-[#e8eef8] bg-white/95 backdrop-blur">
-    <div class="pad flex h-[62px] sm:h-[68px] lg:h-[76px] w-full items-center justify-between">
+  <header class="site-header sticky top-0 z-50 border-b border-[#e8eef8] bg-white/95 backdrop-blur">
+    <div class="pad flex h-[62px] sm:h-[68px] lg:h-[76px] w-full items-center justify-between gap-3">
       
       <!-- Brand Logo -->
       <a href="index.html" class="shrink-0 flex items-center" aria-label="Kartzo home">
@@ -67,20 +67,20 @@
       </a>
 
       <!-- Desktop Primary Nav -->
-      <nav class="ml-6 hidden h-full items-center gap-1 lg:ml-10 lg:flex" aria-label="Primary Navigation">
+      <nav class="site-primary-nav ml-3 hidden items-center gap-1 lg:ml-7 lg:flex" aria-label="Primary Navigation">
         
-        <a href="index.html" class="inline-flex h-full items-center border-b-2 border-transparent font-semibold text-[#3c4a66] hover:text-brand px-3.5 text-sm transition">Home</a>
-        <a href="products.html" class="inline-flex h-full items-center border-b-2 border-transparent font-semibold text-[#3c4a66] hover:text-brand px-3.5 text-sm transition">Shop</a>
-        <a href="categories.html" class="inline-flex h-full items-center border-b-2 border-transparent font-semibold text-[#3c4a66] hover:text-brand px-3.5 text-sm transition">Categories</a>
-        <a href="deals.html" class="inline-flex h-full items-center border-b-2 border-transparent font-semibold text-[#3c4a66] hover:text-brand px-3.5 text-sm transition">Deals</a>
-        <a href="orders.html" class="inline-flex h-full items-center border-b-2 border-transparent font-semibold text-[#3c4a66] hover:text-brand px-3.5 text-sm transition">Orders</a>
-        <a href="about.html" class="inline-flex h-full items-center border-b-2 border-transparent font-semibold text-[#3c4a66] hover:text-brand px-3.5 text-sm transition">About</a>
+        <a href="index.html"  class="inline-flex items-center rounded-lg font-semibold text-[#3c4a66] hover:bg-brand-soft hover:text-brand px-3.5 py-2 text-sm transition">Home</a>
+        <a href="products.html"  class="inline-flex items-center rounded-lg font-semibold text-[#3c4a66] hover:bg-brand-soft hover:text-brand px-3.5 py-2 text-sm transition">Shop</a>
+        <a href="categories.html"  class="inline-flex items-center rounded-lg font-semibold text-[#3c4a66] hover:bg-brand-soft hover:text-brand px-3.5 py-2 text-sm transition">Categories</a>
+        <a href="deals.html"  class="inline-flex items-center rounded-lg font-semibold text-[#3c4a66] hover:bg-brand-soft hover:text-brand px-3.5 py-2 text-sm transition">Deals</a>
+        <a href="orders.html"  class="inline-flex items-center rounded-lg font-semibold text-[#3c4a66] hover:bg-brand-soft hover:text-brand px-3.5 py-2 text-sm transition">Orders</a>
+        <a href="about.html"  class="inline-flex items-center rounded-lg font-semibold text-[#3c4a66] hover:bg-brand-soft hover:text-brand px-3.5 py-2 text-sm transition">About</a>
       </nav>
 
       <!-- Desktop Search Bar -->
-      <form class="search-form ml-auto hidden w-full max-w-[440px] items-center pl-6 lg:flex" action="products.html" method="get" role="search">
+      <form class="search-form ml-auto hidden w-full max-w-[420px] items-center lg:flex" action="products.html" method="get" role="search">
         <label for="search" class="sr-only">Search for products, brands and more</label>
-        <div class="flex w-full items-center rounded-full border border-[#d9e4f7] bg-[#f3f7ff] py-1 pl-4 pr-1 focus-within:border-brand focus-within:bg-white transition duration-150">
+        <div class="search-shell flex w-full items-center rounded-full bg-[#f3f7ff] py-1 pl-4 pr-1 transition duration-150">
           <input id="search" name="q" class="search-input w-full bg-transparent text-sm text-brand-ink outline-none placeholder:text-[#93a0b8]" type="search" placeholder="Search products, brands..." autocomplete="off">
           <button type="submit" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-white hover:bg-brand-dark transition" aria-label="Search">
             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>

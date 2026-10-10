@@ -78,8 +78,8 @@ export function nav(active) {
     ["about.html", "About", "about"]
   ];
   return `
-  <header class="sticky top-0 z-50 border-b border-[#e8eef8] bg-white/95 backdrop-blur">
-    <div class="pad flex h-[62px] sm:h-[68px] lg:h-[76px] w-full items-center justify-between">
+  <header class="site-header sticky top-0 z-50 border-b border-[#e8eef8] bg-white/95 backdrop-blur">
+    <div class="pad flex h-[62px] w-full items-center justify-between gap-3 sm:h-[68px] lg:grid lg:h-auto lg:grid-cols-[minmax(0,1fr)_minmax(20rem,1.25fr)] lg:grid-rows-[auto_auto] lg:gap-x-6 lg:gap-y-3 lg:py-3 xl:flex xl:h-[76px] xl:gap-4 xl:py-0">
       
       <!-- Brand Logo -->
       <a href="index.html" class="shrink-0 flex items-center" aria-label="Kartzo home">
@@ -87,16 +87,16 @@ export function nav(active) {
       </a>
 
       <!-- Desktop Primary Nav -->
-      <nav class="ml-6 hidden h-full items-center gap-1 lg:ml-10 lg:flex" aria-label="Primary Navigation">
+      <nav class="site-primary-nav order-3 ml-0 hidden shrink-0 items-center gap-0 whitespace-nowrap lg:col-start-1 lg:row-start-2 lg:flex xl:order-none xl:ml-3 xl:gap-1" aria-label="Primary Navigation">
         ${items.map(([h, l, k]) => `
-        <a href="${h}" class="inline-flex h-full items-center border-b-2 ${active === k ? "border-brand font-bold text-brand" : "border-transparent font-semibold text-[#3c4a66] hover:text-brand"} px-3.5 text-sm transition">${l}</a>`).join("")}
+        <a href="${h}" ${active === k ? 'aria-current="page"' : ""} class="inline-flex items-center rounded-lg ${active === k ? "bg-brand-soft font-bold text-brand" : "font-semibold text-[#3c4a66] hover:bg-brand-soft hover:text-brand"} px-2.5 py-2 text-sm transition 2xl:px-3.5">${l}</a>`).join("")}
       </nav>
 
       <!-- Desktop Search Bar -->
-      <form class="search-form ml-auto hidden w-full max-w-[440px] items-center pl-6 lg:flex" action="products.html" method="get" role="search">
+      <form class="search-form order-4 ml-0 hidden min-w-0 w-full items-center lg:col-start-2 lg:row-start-2 lg:flex xl:order-none xl:ml-auto xl:max-w-[560px]" action="products.html" method="get" role="search">
         <label for="search" class="sr-only">Search for products, brands and more</label>
-        <div class="flex w-full items-center rounded-full border border-[#d9e4f7] bg-[#f3f7ff] py-1 pl-4 pr-1 focus-within:border-brand focus-within:bg-white transition duration-150">
-          <input id="search" name="q" class="search-input w-full bg-transparent text-sm text-brand-ink outline-none placeholder:text-[#93a0b8]" type="search" placeholder="Search products, brands..." autocomplete="off">
+        <div class="search-shell flex min-w-0 w-full items-center rounded-full bg-[#f3f7ff] py-1 pl-4 pr-1 transition duration-150">
+          <input id="search" name="q" class="search-input min-w-0 w-full bg-transparent text-sm text-brand-ink outline-none placeholder:text-[#93a0b8]" type="search" placeholder="Search products, brands..." autocomplete="off">
           <button type="submit" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-white hover:bg-brand-dark transition" aria-label="Search">
             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
           </button>
@@ -104,7 +104,7 @@ export function nav(active) {
       </form>
 
       <!-- Actions Group -->
-      <div class="ml-auto flex items-center gap-1 sm:gap-2 lg:gap-3 lg:ml-4">
+      <div class="order-2 ml-auto flex shrink-0 items-center gap-1 sm:gap-2 lg:col-start-2 lg:row-start-1 lg:ml-auto lg:gap-3 xl:order-none xl:ml-4">
         <!-- Mobile/Tablet Search Button (opens search modal) -->
         <button type="button" data-search-modal-open class="flex h-10 w-10 items-center justify-center rounded-xl text-brand-ink hover:bg-brand-soft lg:hidden transition" aria-label="Search products">
           ${icon("search", "h-5 w-5")}

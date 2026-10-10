@@ -48,37 +48,39 @@
         <li class="flex items-center gap-2"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 4v4h4"/></svg>7 Days Easy Returns</li>
         <li class="flex items-center gap-2"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg>100% Secure Payment</li>
       </ul>
+      <!-- App download promo hidden while the mobile app section is disabled.
       <a href="#app" class="inline-flex shrink-0 items-center gap-2 hover:underline">
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
         <span class="sm:hidden">Get 10% OFF</span>
         <span class="hidden sm:inline">Download App &amp; Get 10% OFF</span>
       </a>
+      -->
     </div>
   </div>
 
-  <header class="sticky top-0 z-50 border-b border-[#e8eef8] bg-white/95 backdrop-blur">
-    <div class="pad flex h-[62px] sm:h-[68px] lg:h-[76px] w-full items-center justify-between">
+  <header class="site-header sticky top-0 z-50 border-b border-[#e8eef8] bg-white/95 backdrop-blur">
+    <div class="pad flex h-[62px] w-full items-center justify-between gap-3 sm:h-[68px] lg:grid lg:h-auto lg:grid-cols-[minmax(0,1fr)_minmax(20rem,1.25fr)] lg:grid-rows-[auto_auto] lg:gap-x-6 lg:gap-y-3 lg:py-3 xl:flex xl:h-[76px] xl:gap-4 xl:py-0">
       <a href="index.html" class="shrink-0 flex items-center" aria-label="Kartzo home">
         <img src="assets/logo.webp" alt="Kartzo" width="541" height="168" class="h-7 w-auto sm:h-9">
       </a>
-      <nav class="ml-6 hidden h-full items-center gap-1 lg:ml-10 lg:flex" aria-label="Primary Navigation">
-        <a href="index.html" class="inline-flex h-full items-center border-b-2 border-brand px-3.5 text-sm font-bold text-brand">Home</a>
-        <a href="products.html" class="inline-flex h-full items-center border-b-2 border-transparent px-3.5 text-sm font-semibold text-[#3c4a66] hover:text-brand">Shop</a>
-        <a href="categories.html" class="inline-flex h-full items-center border-b-2 border-transparent px-3.5 text-sm font-semibold text-[#3c4a66] hover:text-brand">Categories</a>
-        <a href="deals.html" class="inline-flex h-full items-center border-b-2 border-transparent px-3.5 text-sm font-semibold text-[#3c4a66] hover:text-brand">Deals</a>
-        <a href="orders.html" class="inline-flex h-full items-center border-b-2 border-transparent px-3.5 text-sm font-semibold text-[#3c4a66] hover:text-brand">Orders</a>
-        <a href="about.html" class="inline-flex h-full items-center border-b-2 border-transparent px-3.5 text-sm font-semibold text-[#3c4a66] hover:text-brand">About</a>
+      <nav class="site-primary-nav order-3 ml-0 hidden shrink-0 items-center gap-0 whitespace-nowrap lg:col-start-1 lg:row-start-2 lg:flex xl:order-none xl:ml-3 xl:gap-1" aria-label="Primary Navigation">
+        <a href="index.html" aria-current="page" class="inline-flex items-center rounded-lg bg-brand-soft px-2.5 py-2 text-sm font-bold text-brand 2xl:px-3.5">Home</a>
+        <a href="products.html" class="inline-flex items-center rounded-lg px-2.5 py-2 text-sm font-semibold text-[#3c4a66] hover:bg-brand-soft hover:text-brand 2xl:px-3.5">Shop</a>
+        <a href="categories.html" class="inline-flex items-center rounded-lg px-2.5 py-2 text-sm font-semibold text-[#3c4a66] hover:bg-brand-soft hover:text-brand 2xl:px-3.5">Categories</a>
+        <a href="deals.html" class="inline-flex items-center rounded-lg px-2.5 py-2 text-sm font-semibold text-[#3c4a66] hover:bg-brand-soft hover:text-brand 2xl:px-3.5">Deals</a>
+        <a href="orders.html" class="inline-flex items-center rounded-lg px-2.5 py-2 text-sm font-semibold text-[#3c4a66] hover:bg-brand-soft hover:text-brand 2xl:px-3.5">Orders</a>
+        <a href="about.html" class="inline-flex items-center rounded-lg px-2.5 py-2 text-sm font-semibold text-[#3c4a66] hover:bg-brand-soft hover:text-brand 2xl:px-3.5">About</a>
       </nav>
-      <form class="search-form ml-auto hidden w-full max-w-[440px] items-center pl-6 lg:flex" action="products.html" method="get" role="search">
+      <form class="search-form order-4 ml-0 hidden min-w-0 w-full items-center lg:col-start-2 lg:row-start-2 lg:flex xl:order-none xl:ml-auto xl:max-w-[560px]" action="products.html" method="get" role="search">
         <label for="search" class="sr-only">Search for products, brands and more</label>
-        <div class="flex w-full items-center rounded-full border border-[#d9e4f7] bg-[#f3f7ff] py-1 pl-4 pr-1 focus-within:border-brand focus-within:bg-white transition duration-150">
-          <input id="search" name="q" class="search-input w-full bg-transparent text-sm text-brand-ink outline-none placeholder:text-[#93a0b8]" type="search" placeholder="Search products, brands..." autocomplete="off">
+        <div class="search-shell flex min-w-0 w-full items-center rounded-full bg-[#f3f7ff] py-1 pl-4 pr-1 transition duration-150">
+          <input id="search" name="q" class="search-input min-w-0 w-full bg-transparent text-sm text-brand-ink outline-none placeholder:text-[#93a0b8]" type="search" placeholder="Search products, brands..." autocomplete="off">
           <button type="submit" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-white hover:bg-brand-dark transition" aria-label="Search">
             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
           </button>
         </div>
       </form>
-      <div class="ml-auto flex items-center gap-1 sm:gap-2 lg:gap-3 lg:ml-4">
+      <div class="order-2 ml-auto flex shrink-0 items-center gap-1 sm:gap-2 lg:col-start-2 lg:row-start-1 lg:ml-auto lg:gap-3 xl:order-none xl:ml-4">
         <!-- Mobile/Tablet Search Button (opens search modal) -->
         <button type="button" data-search-modal-open class="flex h-10 w-10 items-center justify-center rounded-xl text-brand-ink hover:bg-brand-soft lg:hidden transition" aria-label="Search products">
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7.5"/><path d="m20 20-3.8-3.8"/></svg>
@@ -131,89 +133,132 @@
   </header>
 
   <main id="main">
-    <section class="overflow-hidden bg-[#eef5ff]">
-      <div class="grid w-full items-center lg:grid-cols-[minmax(420px,0.9fr)_minmax(0,1.1fr)]">
-        <div class="pad py-8 sm:py-10 lg:py-12">
-          <p class="inline-flex items-center rounded-full border border-[#c9dbff] bg-white/80 px-3 py-1 text-[11px] font-bold text-brand">New Season • New Deals</p>
-          <h1 class="mt-3 text-[2rem] font-extrabold leading-[1.02] tracking-tight text-brand-ink sm:text-5xl lg:text-[3.35rem]">Everything You Need,<br>At <span class="text-brand">Better Prices.</span></h1>
-          <p class="mt-3 max-w-md text-sm leading-relaxed text-brand-muted sm:text-[15px]">Quality products at better prices — fast delivery, secure pay, easy returns.</p>
-          <div class="mt-5 flex flex-wrap gap-3">
-            <a href="products.html" class="inline-flex min-h-11 items-center justify-center rounded-xl bg-brand px-6 text-sm font-bold text-white shadow-[0_8px_20px_rgba(26,86,240,0.28)] hover:bg-brand-dark">Shop Now →</a>
-            <a href="categories.html" class="inline-flex min-h-11 items-center justify-center rounded-xl border border-[#c9dbff] bg-white px-6 text-sm font-bold text-brand hover:border-brand">Explore Categories</a>
+    <section class="hero-carousel relative overflow-hidden bg-brand-ink" data-hero-carousel aria-label="Featured Kartzo offers">
+      <div class="hero-stage relative min-h-[520px] sm:min-h-[570px] lg:min-h-[600px]">
+        <article class="hero-slide is-active relative col-start-1 row-start-1 min-w-0" data-hero-slide aria-hidden="false">
+          <img src="assets/hero 2.png" alt="Featured electronics and home appliances collection" width="1242" height="1242" class="hero-slide-image absolute inset-0 h-full w-full object-cover object-center">
+          <div class="hero-slide-shade absolute inset-0"></div>
+          <div class="pad relative z-10 flex min-h-[520px] items-center py-12 sm:min-h-[570px] lg:min-h-[600px]">
+            <div class="max-w-xl text-white">
+              <p class="hero-kicker inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-white/90 backdrop-blur-sm">Featured collection</p>
+              <h1 class="mt-4 max-w-lg text-[2.45rem] font-extrabold leading-[0.98] tracking-[-0.04em] sm:text-6xl lg:text-[4.7rem]">Upgrade your<br><span class="text-[#b9d5ff]">everyday.</span></h1>
+              <p class="mt-5 max-w-md text-sm leading-relaxed text-white/80 sm:text-base">Smart tech, home upgrades and daily essentials — curated for better living and better value.</p>
+              <div class="mt-7 flex flex-wrap gap-3">
+                <a href="products.html" class="inline-flex min-h-11 items-center justify-center rounded-xl bg-white px-6 text-sm font-extrabold text-brand-ink shadow-[0_12px_28px_rgba(0,0,0,0.18)] transition hover:bg-[#eaf2ff]">Shop collection <span class="ml-2" aria-hidden="true">→</span></a>
+                <a href="deals.html" class="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/30 bg-white/10 px-6 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white/20">View hot deals</a>
+              </div>
+              <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-semibold text-white/75">
+                <span>Free delivery over ₹499</span><span class="h-1 w-1 rounded-full bg-white/50" aria-hidden="true"></span><span>7-day easy returns</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="relative flex min-h-[280px] items-center justify-end sm:min-h-[380px] lg:min-h-[500px]">
-          <img src="assets/hero.webp" alt="Kartzo shopping bag with headphones, a smartwatch, a phone and sneakers" width="1536" height="1024" class="h-full max-h-[520px] w-full object-contain object-right">
+        </article>
+
+        <article class="hero-slide relative col-start-1 row-start-1 min-w-0" data-hero-slide aria-hidden="true" inert>
+          <img src="assets/hero 3.png" alt="Blue-toned smart devices and entertainment electronics" width="1242" height="1242" class="hero-slide-image absolute inset-0 h-full w-full object-cover object-center">
+          <div class="hero-slide-shade absolute inset-0"></div>
+          <div class="pad relative z-10 flex min-h-[520px] items-center py-12 sm:min-h-[570px] lg:min-h-[600px]">
+            <div class="max-w-xl text-white">
+              <p class="hero-kicker inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-white/90 backdrop-blur-sm">Tech week is live</p>
+              <h2 class="mt-4 max-w-lg text-[2.45rem] font-extrabold leading-[0.98] tracking-[-0.04em] sm:text-6xl lg:text-[4.7rem]">Big screen.<br><span class="text-[#b9d5ff]">Bigger deals.</span></h2>
+              <p class="mt-5 max-w-md text-sm leading-relaxed text-white/80 sm:text-base">Bring home the gadgets you have been waiting for with limited-time prices across electronics.</p>
+              <div class="mt-7 flex flex-wrap gap-3"><a href="products.html?category=electronics" class="inline-flex min-h-11 items-center justify-center rounded-xl bg-white px-6 text-sm font-extrabold text-brand-ink shadow-[0_12px_28px_rgba(0,0,0,0.18)] transition hover:bg-[#eaf2ff]">Shop electronics <span class="ml-2" aria-hidden="true">→</span></a><a href="deals.html" class="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/30 bg-white/10 px-6 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white/20">Save up to 50%</a></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="hero-slide relative col-start-1 row-start-1 min-w-0" data-hero-slide aria-hidden="true" inert>
+          <img src="assets/hero 4.png" alt="Smart home and lifestyle products styled in a blue living room" width="1242" height="1242" class="hero-slide-image absolute inset-0 h-full w-full object-cover object-center">
+          <div class="hero-slide-shade absolute inset-0"></div>
+          <div class="pad relative z-10 flex min-h-[520px] items-center py-12 sm:min-h-[570px] lg:min-h-[600px]">
+            <div class="max-w-xl text-white"><p class="hero-kicker inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-white/90 backdrop-blur-sm">Home refresh</p><h2 class="mt-4 max-w-lg text-[2.45rem] font-extrabold leading-[0.98] tracking-[-0.04em] sm:text-6xl lg:text-[4.7rem]">Make space<br><span class="text-[#b9d5ff]">for better.</span></h2><p class="mt-5 max-w-md text-sm leading-relaxed text-white/80 sm:text-base">Small upgrades, smarter routines and home essentials that look as good as they work.</p><div class="mt-7 flex flex-wrap gap-3"><a href="products.html?category=home" class="inline-flex min-h-11 items-center justify-center rounded-xl bg-white px-6 text-sm font-extrabold text-brand-ink shadow-[0_12px_28px_rgba(0,0,0,0.18)] transition hover:bg-[#eaf2ff]">Shop home <span class="ml-2" aria-hidden="true">→</span></a><a href="categories.html" class="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/30 bg-white/10 px-6 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white/20">Explore categories</a></div></div>
+          </div>
+        </article>
+
+        <article class="hero-slide relative col-start-1 row-start-1 min-w-0" data-hero-slide aria-hidden="true" inert>
+          <img src="assets/hero 5.png" alt="Curated collection of everyday lifestyle and technology products" width="1242" height="1242" class="hero-slide-image absolute inset-0 h-full w-full object-cover object-center">
+          <div class="hero-slide-shade absolute inset-0"></div>
+          <div class="pad relative z-10 flex min-h-[520px] items-center py-12 sm:min-h-[570px] lg:min-h-[600px]"><div class="max-w-xl text-white"><p class="hero-kicker inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-white/90 backdrop-blur-sm">Your cart, upgraded</p><h2 class="mt-4 max-w-lg text-[2.45rem] font-extrabold leading-[0.98] tracking-[-0.04em] sm:text-6xl lg:text-[4.7rem]">Find your<br><span class="text-[#b9d5ff]">next favourite.</span></h2><p class="mt-5 max-w-md text-sm leading-relaxed text-white/80 sm:text-base">Discover useful, good-looking products across fashion, gadgets, beauty and more.</p><div class="mt-7 flex flex-wrap gap-3"><a href="categories.html" class="inline-flex min-h-11 items-center justify-center rounded-xl bg-white px-6 text-sm font-extrabold text-brand-ink shadow-[0_12px_28px_rgba(0,0,0,0.18)] transition hover:bg-[#eaf2ff]">Browse categories <span class="ml-2" aria-hidden="true">→</span></a><a href="products.html" class="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/30 bg-white/10 px-6 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white/20">See best sellers</a></div></div></div>
+        </article>
+
+        <article class="hero-slide relative col-start-1 row-start-1 min-w-0" data-hero-slide aria-hidden="true" inert>
+          <img src="assets/hero.webp" alt="Kartzo shopping collection with headphones, smartwatch, phone and sneakers" width="1536" height="1024" class="hero-slide-image absolute inset-0 h-full w-full object-cover object-center">
+          <div class="hero-slide-shade absolute inset-0"></div>
+          <div class="pad relative z-10 flex min-h-[520px] items-center py-12 sm:min-h-[570px] lg:min-h-[600px]"><div class="max-w-xl text-white"><p class="hero-kicker inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-white/90 backdrop-blur-sm">Welcome to Kartzo</p><h2 class="mt-4 max-w-lg text-[2.45rem] font-extrabold leading-[0.98] tracking-[-0.04em] sm:text-6xl lg:text-[4.7rem]">Everything you need.<br><span class="text-[#b9d5ff]">Better prices.</span></h2><p class="mt-5 max-w-md text-sm leading-relaxed text-white/80 sm:text-base">A smarter way to shop everyday essentials with fast delivery, secure checkout and easy returns.</p><div class="mt-7 flex flex-wrap gap-3"><a href="products.html" class="inline-flex min-h-11 items-center justify-center rounded-xl bg-white px-6 text-sm font-extrabold text-brand-ink shadow-[0_12px_28px_rgba(0,0,0,0.18)] transition hover:bg-[#eaf2ff]">Start shopping <span class="ml-2" aria-hidden="true">→</span></a><a href="deals.html" class="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/30 bg-white/10 px-6 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white/20">Grab a deal</a></div></div></div>
+        </article>
+
+        <div class="pad pointer-events-none absolute inset-x-0 bottom-5 z-20 flex flex-wrap items-center justify-center gap-2">
+          <div class="pointer-events-auto flex items-center" data-hero-dots role="group" aria-label="Choose featured slide"></div>
         </div>
       </div>
     </section>
 
     <section aria-label="Shopping benefits" class="border-b border-[#eef2f8] bg-white">
-      <ul class="pad grid w-full grid-cols-2 gap-3 py-4 md:grid-cols-4 md:py-5">
-        <li class="flex items-center gap-3">
+      <ul class="pad grid w-full grid-cols-2 gap-x-4 gap-y-5 py-5 lg:grid-cols-4 lg:gap-6 lg:py-6">
+        <li class="flex min-w-0 flex-col items-center gap-2 text-center sm:flex-row sm:gap-3 sm:text-left">
           <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#eaf1ff] text-brand" aria-hidden="true"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg></span>
-          <span><span class="block text-sm font-extrabold">Free Shipping</span><span class="block text-xs text-brand-muted">On orders ₹499+</span></span>
+          <span class="min-w-0"><span class="block text-sm font-bold leading-5">Free Shipping</span><span class="mt-0.5 block text-xs leading-5 text-brand-muted">On orders ₹499+</span></span>
         </li>
-        <li class="flex items-center gap-3">
+        <li class="flex min-w-0 flex-col items-center gap-2 text-center sm:flex-row sm:gap-3 sm:text-left">
           <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#eaf1ff] text-brand" aria-hidden="true"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span>
-          <span><span class="block text-sm font-extrabold">Secure Payment</span><span class="block text-xs text-brand-muted">100% Safe &amp; Secure</span></span>
+          <span class="min-w-0"><span class="block text-sm font-bold leading-5">Secure Payment</span><span class="mt-0.5 block text-xs leading-5 text-brand-muted">100% Safe &amp; Secure</span></span>
         </li>
-        <li class="flex items-center gap-3">
+        <li class="flex min-w-0 flex-col items-center gap-2 text-center sm:flex-row sm:gap-3 sm:text-left">
           <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#eaf1ff] text-brand" aria-hidden="true"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 8v11a2 2 0 0 1-2 2H7"/><path d="M16 3H5a2 2 0 0 0-2 2v12"/><path d="m7 8 4 4 8-8"/></svg></span>
-          <span><span class="block text-sm font-extrabold">Easy Returns</span><span class="block text-xs text-brand-muted">7 Days Hassle Free</span></span>
+          <span class="min-w-0"><span class="block text-sm font-bold leading-5">Easy Returns</span><span class="mt-0.5 block text-xs leading-5 text-brand-muted">7 Days Hassle Free</span></span>
         </li>
-        <li class="flex items-center gap-3">
+        <li class="flex min-w-0 flex-col items-center gap-2 text-center sm:flex-row sm:gap-3 sm:text-left">
           <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#eaf1ff] text-brand" aria-hidden="true"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13v4a2 2 0 0 0 2 2h1v-6H4zM20 13v4a2 2 0 0 1-2 2h-1v-6h3z"/><path d="M12 19v2"/></svg></span>
-          <span><span class="block text-sm font-extrabold">24/7 Support</span><span class="block text-xs text-brand-muted">We're Always Here</span></span>
+          <span class="min-w-0"><span class="block text-sm font-bold leading-5">24/7 Support</span><span class="mt-0.5 block text-xs leading-5 text-brand-muted">We're Always Here</span></span>
         </li>
       </ul>
     </section>
 
-    <section id="categories" class="w-full py-8">
-      <div class="pad mb-5 flex items-center justify-between gap-3">
-        <h2 class="text-xl font-extrabold tracking-tight sm:text-2xl">Shop by <span class="text-brand">Category</span></h2>
-        <a href="categories.html" class="shrink-0 text-sm font-bold text-brand hover:underline">View All Categories →</a>
+    <section id="categories" class="w-full py-6 sm:py-8">
+      <div class="pad mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 sm:mb-5">
+        <h2 class="text-balance text-xl font-extrabold sm:text-2xl">Shop by <span class="text-brand">Category</span></h2>
+        <a href="categories.html" class="inline-flex min-h-11 items-center text-sm font-bold text-brand hover:underline">View All Categories <span class="ml-1" aria-hidden="true">→</span></a>
       </div>
-      <div class="cat-row no-scrollbar pad pb-1">
+      <div class="pad grid auto-cols-[6.5rem] grid-flow-col gap-3 overflow-x-auto pb-2 pt-1 sm:auto-cols-[7rem] sm:gap-4 xl:grid-flow-row xl:grid-cols-10 xl:overflow-visible">
         <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/p-headphones.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
-          <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Electronics</span>
+          <span class="min-h-10 text-center text-xs font-semibold leading-5 text-brand-ink">Electronics</span>
         </a>
         <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/c-fashion.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
-          <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Fashion</span>
+          <span class="min-h-10 text-center text-xs font-semibold leading-5 text-brand-ink">Fashion</span>
         </a>
         <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/c-home.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
-          <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Home &amp; Living</span>
+          <span class="min-h-10 text-center text-xs font-semibold leading-5 text-brand-ink">Home &amp; Living</span>
         </a>
         <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/p-perfume.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
-          <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Beauty</span>
+          <span class="min-h-10 text-center text-xs font-semibold leading-5 text-brand-ink">Beauty</span>
         </a>
         <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/p-fryer.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
-          <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Kitchen</span>
+          <span class="min-h-10 text-center text-xs font-semibold leading-5 text-brand-ink">Kitchen</span>
         </a>
         <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/p-shoes.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
-          <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Sports</span>
+          <span class="min-h-10 text-center text-xs font-semibold leading-5 text-brand-ink">Sports</span>
         </a>
         <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/c-toys.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
-          <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Toys &amp; Games</span>
+          <span class="min-h-10 text-center text-xs font-semibold leading-5 text-brand-ink">Toys &amp; Games</span>
         </a>
         <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/p-phone.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
-          <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Mobile &amp; Accessories</span>
+          <span class="min-h-10 text-center text-xs font-semibold leading-5 text-brand-ink">Mobile &amp; Accessories</span>
         </a>
         <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/p-backpack.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
-          <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Bags &amp; Luggage</span>
+          <span class="min-h-10 text-center text-xs font-semibold leading-5 text-brand-ink">Bags &amp; Luggage</span>
         </a>
         <a href="products.html" class="group flex min-w-0 flex-col items-center gap-2">
           <span class="flex aspect-square w-full items-center justify-center rounded-2xl border border-[#e7eefb] bg-[#f7f9fc] p-2 shadow-[0_2px_8px_rgba(15,40,100,0.04)] transition duration-200 group-hover:border-brand"><img src="assets/c-health.webp" alt="" width="800" height="800" class="h-full w-full object-contain"></span>
-          <span class="text-center text-[11px] font-semibold leading-tight text-brand-muted">Health &amp; Wellness</span>
+          <span class="min-h-10 text-center text-xs font-semibold leading-5 text-brand-ink">Health &amp; Wellness</span>
         </a>
       </div>
     </section>
@@ -327,25 +372,32 @@
       </ul>
     </section>
 
-    <section class="pad grid w-full items-stretch gap-3 sm:gap-4 lg:grid-cols-5">
-      <article class="relative aspect-[2.2/1] overflow-hidden rounded-[22px] bg-[#041868] sm:aspect-[2.7/1] lg:col-span-3 lg:aspect-[3.2/1]">
-        <img src="assets/electronics.webp" alt="" width="2113" height="619" class="absolute inset-0 h-full w-full object-cover object-[64%_82%]" loading="lazy">
-        <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#031648]/80 via-[#031648]/25 to-transparent sm:from-[#031648]/35"></div>
-        <div class="relative z-10 flex h-full max-w-[58%] flex-col justify-center p-4 text-white sm:max-w-xs sm:p-7">
-          <p class="text-[10px] font-bold uppercase tracking-wide text-white/80 sm:text-xs">Electronics Sale</p>
-          <h2 class="mt-1 text-xl font-extrabold leading-tight sm:text-3xl">Top Brands<br>Up to 50% OFF</h2>
-          <a href="products.html" class="mt-3 inline-flex min-h-11 w-fit items-center rounded-lg bg-white px-4 text-sm font-bold text-brand-dark hover:bg-[#eef4ff]">Shop Electronics →</a>
+    <section aria-label="Featured collections" class="pad grid w-full items-stretch gap-4 lg:grid-cols-5">
+      <article class="grid min-w-0 overflow-hidden rounded-3xl bg-[#041868] sm:min-h-80 sm:grid-cols-[55%_45%] lg:col-span-3">
+        <div class="flex min-w-0 flex-col p-6 text-white sm:p-8 lg:p-6 xl:p-8">
+          <p class="text-xs font-bold uppercase text-white/80">Electronics Sale</p>
+          <h2 class="mt-3 text-balance text-2xl font-extrabold leading-tight sm:text-3xl lg:text-2xl xl:text-3xl">Top Brands<br>Up to 50% OFF</h2>
+          <div class="mt-auto pt-6">
+            <a href="products.html?category=electronics" class="inline-flex min-h-11 max-w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-bold text-brand-dark hover:bg-[#eef4ff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">Shop Electronics <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <div class="relative min-h-44 overflow-hidden sm:min-h-0">
+          <!-- Overscan trims the white border baked into the source image. -->
+          <img src="assets/electronics.webp" alt="" width="2113" height="619" class="absolute inset-x-0 bottom-0 h-[104%] w-full object-cover object-[80%_center]" loading="lazy">
         </div>
       </article>
-      <article class="grid aspect-[1.9/1] grid-cols-[46%_54%] overflow-hidden rounded-[22px] bg-[#f4eadf] sm:aspect-[2.05/1] lg:col-span-2 lg:aspect-auto lg:h-full">
-        <div class="flex flex-col justify-center px-3.5 py-3 sm:px-5">
-          <p class="text-[10px] font-bold uppercase tracking-wide text-[#b5813d] sm:text-xs">Home &amp; Living</p>
-          <h2 class="mt-1 text-xl font-extrabold leading-tight text-brand-ink sm:text-2xl">Make It<br>Yours</h2>
-          <p class="mt-1.5 hidden text-xs leading-relaxed text-brand-muted sm:block">Stylish, comfortable and modern products for your home.</p>
-          <a href="products.html" class="mt-3 inline-flex min-h-11 w-fit items-center rounded-lg bg-brand-ink px-3.5 text-sm font-bold text-white hover:bg-black">Shop Home →</a>
+      <article class="grid min-w-0 overflow-hidden rounded-3xl bg-[#f4eadf] sm:min-h-80 sm:grid-cols-[55%_45%] lg:col-span-2 lg:grid-cols-[60%_40%]">
+        <div class="flex min-w-0 flex-col p-6 sm:p-8 lg:p-6 xl:p-8">
+          <p class="text-xs font-bold uppercase text-[#805729]">Home &amp; Living</p>
+          <h2 class="mt-3 text-balance text-2xl font-extrabold leading-tight text-brand-ink sm:text-3xl lg:text-2xl xl:text-3xl">Make It<br>Yours</h2>
+          <p class="mt-3 text-pretty text-sm leading-relaxed text-brand-muted">Stylish, comfortable and modern products for your home.</p>
+          <div class="mt-auto pt-6">
+            <a href="products.html?category=home" class="inline-flex min-h-11 max-w-full items-center justify-center gap-2 rounded-xl bg-brand-ink px-4 py-3 text-sm font-bold text-white hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-ink">Shop Home <span aria-hidden="true">→</span></a>
+          </div>
         </div>
-        <div class="relative h-full min-h-0 overflow-hidden">
-          <img src="assets/home.webp" alt="Blue sofa in a bright living room" width="1912" height="706" class="absolute inset-0 h-full w-full object-cover object-[88%_center]" loading="lazy">
+        <div class="relative min-h-44 overflow-hidden sm:min-h-0">
+          <!-- The original asset has a white top strip; crop it inside this image pane. -->
+          <img src="assets/home.webp" alt="Blue sofa in a bright living room" width="1912" height="706" class="absolute inset-x-0 bottom-0 h-[110%] w-full object-cover object-[78%_center]" loading="lazy">
         </div>
       </article>
     </section>
@@ -510,6 +562,7 @@
       </div>
     </section>
 
+    <!-- Mobile app promotion temporarily disabled; retained for future use.
     <section id="app" class="pad w-full pb-8">
       <div class="grid items-center gap-6 overflow-hidden rounded-[28px] bg-[#f3f8ff] p-5 sm:p-8 lg:grid-cols-[1.1fr_1fr_0.9fr]">
         <img src="assets/app.webp" alt="Kartzo app open on three phones" width="1536" height="1024" class="mx-auto w-full max-w-md" loading="lazy">
@@ -569,6 +622,8 @@
         </ul>
       </div>
     </section>
+
+    -->
 
     <section id="blog" class="pad w-full pb-8">
       <div class="mb-4 flex items-center justify-between gap-3">
